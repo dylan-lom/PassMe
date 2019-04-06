@@ -1,7 +1,7 @@
 # PassMe
 ETH Passwd Manager
 
-extension&#9; chrome extension
-NoteChain.sol&#9; NoteChain[1] backend (to be superseeded eventually)
-
-[1]http://notechain.org/
+<table>
+  <tr><td>extension</td><td>chrome extension source</td></tr>
+  <tr><td>NoteChain.sol</td><td>NoteChain[1] backend (to be superseeded eventually)</td></tr>
+</table>

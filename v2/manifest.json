@@ -7,12 +7,12 @@
 		"scripts": ["background.js"],
 		"persistent": false
 	},
-	
-	"page_action": {
+
+	"browser_action":{
 		"default_icon": {
 			"32": "icons/lock32.png"
 		},
-		"default_popup": "index.html"
+		"default_popup": "popup.html"
 	},
 	"manifest_version": 2
 }

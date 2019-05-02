@@ -6,5 +6,5 @@ function getUrl(){
 chrome.browserAct
 
 console.log('hello');
-console.log(getUrl());
+//console.log(getUrl());
 //document.getElementById("siteUrl").value = chrome.tabs.getCurrent(function(){});

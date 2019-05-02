@@ -12,7 +12,8 @@ var rule1 = {
 		})
 	],
 	actions: [
-		new chrome.declarativeContent.ShowPageAction()
+		//new chrome.declarativeContent.ShowPageAction()
+		chrome.browserAction.setPopop();
 	]
 };	
 
@@ -21,9 +22,6 @@ chrome.runtime.onInstalled.addListener(function(){
 		chrome.declarativeContent.onPageChanged.addRules([rule1]);
 	});
 });
-
-
-
 
 
 
@@ -66,9 +64,6 @@ chrome.runtime.onInstalled.addListener(function(){
 	);
 });*/
 
-chrome.tabs.onUpdated.addListener(function(){
-	chrome.tabs.query({active:true, currentWindow:true}, function(tabs){
-		return tabs[0].url;
-	});
-	
+chrome.browserAction.onClicked.addListener(function(tab){
+	console.log(tab.url);
 });

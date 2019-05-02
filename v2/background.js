@@ -12,8 +12,8 @@ var rule1 = {
 		})
 	],
 	actions: [
-		//new chrome.declarativeContent.ShowPageAction()
-		chrome.browserAction.setPopop();
+		new chrome.declarativeContent.ShowPageAction()
+		//chrome.browserAction.setPopop();
 	]
 };	
 
@@ -64,6 +64,7 @@ chrome.runtime.onInstalled.addListener(function(){
 	);
 });*/
 
-chrome.browserAction.onClicked.addListener(function(tab){
+/*chrome.browserAction.onClicked.addListener(function(tab){
 	console.log(tab.url);
 });
+*/

@@ -1,4 +1,4 @@
-function checkHost(host){
+/*function checkHost(host){
 	return chrome.tabs.query({active:true, currentWindow:true}, function(tabs){
 		return tabs[0].url;
 	});
@@ -12,8 +12,7 @@ var rule1 = {
 		})
 	],
 	actions: [
-		new chrome.declarativeContent.ShowPageAction()
-		//chrome.browserAction.setPopop();
+		chrome.browserAction.setPopop();
 	]
 };	
 
@@ -21,7 +20,7 @@ chrome.runtime.onInstalled.addListener(function(){
 	chrome.declarativeContent.onPageChanged.removeRules(undefined, function(){
 		chrome.declarativeContent.onPageChanged.addRules([rule1]);
 	});
-});
+});*/
 
 
 

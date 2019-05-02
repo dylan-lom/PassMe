@@ -4,11 +4,11 @@
 	"description": "ETH Password Manager",
 	"permissions": ["declarativeContent", "storage", "activeTab"],
 	"background": {
-		"scripts": ["background.js"],
+		"scripts": ["background.js", "popup.js"],
 		"persistent": false
 	},
 
-	"browser_action":{
+	"page_action":{
 		"default_icon": {
 			"32": "icons/lock32.png"
 		},

@@ -3,11 +3,8 @@ function getUrl(){
 		return tabs[0].url;
 	});
 };
+chrome.browserAct
 
-chrome.tabs.getCurrent(function(currentTab){
-	console.log(currentTab.url);
-});
-
-/*console.log('hello');
+console.log('hello');
 console.log(getUrl());
-document.getElementById("siteUrl").value = chrome.tabs.getCurrent(function(){});*/
+//document.getElementById("siteUrl").value = chrome.tabs.getCurrent(function(){});

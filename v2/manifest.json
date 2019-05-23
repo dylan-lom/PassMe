@@ -2,7 +2,7 @@
 	"name": "PassMe",
 	"version": "0.2",
 	"description": "ETH Password Manager",
-	"permissions": ["declarativeContent", "storage", "activeTab"],
+	"permissions": ["declarativeContent", "storage", "tabs", "http://*/*", "https://*/*"],
 	"background": {
 		"scripts": ["background.js", "popup.js"],
 		"persistent": false
@@ -11,8 +11,8 @@
 	"browser_action":{
 		"default_icon": {
 			"32": "icons/lock32.png"
-		},
-		"default_popup": "popup.html"
+		}
+		
 	},
 	
 	"manifest_version": 2

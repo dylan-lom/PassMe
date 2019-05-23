@@ -16,10 +16,6 @@
 	});
 });*/
 
-document.getElementById("manualSavePassD").addEventListener(function){
-	chrome.declarativeContent.onPageChanged.removeRules(undefined, function() {
-		chrome.declarativeContent.onPageChanged.addRules(rules);
-	});
-console.log('hello');
+//console.log("hello");
 //console.log(getUrl());
 //document.getElementById("siteUrl").value = chrome.tabs.getCurrent(function(){});

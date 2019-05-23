@@ -63,7 +63,21 @@ chrome.runtime.onInstalled.addListener(function(){
 	);
 });*/
 
-/*chrome.browserAction.onClicked.addListener(function(tab){
-	console.log(tab.url);
+chrome.browserAction.onClicked.addListener(function() {
+	chrome.tabs.getCurrent(function(tab){
+		//window.open(tab.url);
+		chrome.browserAction.setPopup({popup: "popup.html?siteUrl=blah"});
+		chrome.runtime.sendMessage({greeting: "hello"}, function(response) {
+			console.log(response.farewell);
+		})
+	})
 });
-*/
+
+chrome.runtime.onMessage.addListener(functio(request, sender, sendResponse){
+	console.log (sender.tab ?
+				"from a content script:" + sender.tab.url :
+				"from the extension");
+	if (request.greeting == "hello"){
+		sendResponse({farewell: "goodbye"});
+	}
+});

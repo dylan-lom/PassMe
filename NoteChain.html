@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>NoteChain + Web3 Demo</title>
+    <script src="web3.min.js"></script>
+	<script src="NoteChain.js"></script>
+</head>
+
+<body>
+    <h1>NoteChain + Web3 Demo</h1>
+    <form id="createNote">
+    <table>
+    <tr>
+        <td>Metadata:</td><td><input type="number" name="metadata" value="0"></td>
+    </tr><tr>
+        <td>Public Key:</td><td><input type="text" name="publicKey"></td>
+    </tr><tr>
+        <td>Title:</td><td><input type="text" id="title"></td>
+    </tr><tr>
+        <td>Content:</td><td><textarea name="content" rows="4" cols="50"></textarea></td>
+    </tr>
+    </table>
+    <input type="button" onclick="notechain.createNote(metadata.value, publicKey.value, title.value, content.value);">
+    <input type="button" onclick="console.log(metadata.value);">
+    </form>
+</body>
+</html>

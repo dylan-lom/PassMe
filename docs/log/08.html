@@ -1,76 +1,108 @@
-<!DOCTYPE html>
+<p>&lt;!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset=UTF-8>
   <link rel="stylesheet" type="text/css" href="../style.css">
   <title>08 - Back to NoteChain | Log</title>
-</head>
+</head></p>
 
-<body>
+<p><body>
   <h1>08 - Back to NoteChain</h1>
-  After a couple of attempts, I don't think that I'll be able to use ganache-cli on a school desktop -- node complains about ports or something (I assume this is a problem with the firewall).
+  After a couple of attempts, I don&rsquo;t think that I&rsquo;ll be able to use ganache-cli on a school desktop &ndash; node complains about ports or something (I assume this is a problem with the firewall).</p>
 
-I've revisited the NoteChain contract as I've started on implementing the Web3 library into my extension's popup.html, and I noticed that on line 19, the contract declares:
+<p>I&rsquo;ve revisited the NoteChain contract as I&rsquo;ve started on implementing the Web3 library into my extension&rsquo;s popup.html, and I noticed that on line 19, the contract declares:</p>
+
 <pre><code> uint public noteChainFee = 0.0002 ether; // fee for using noteChain </code></pre>
-I hadn't previously had much exposure to how fees were for running smart contracts, but looking it up, the fees seems to be pretty tiny, which is great because it means that this could be a feasible way of storing passwords
+
+
+<p>I hadn&rsquo;t previously had much exposure to how fees were for running smart contracts, but looking it up, the fees seems to be pretty tiny, which is great because it means that this could be a feasible way of storing passwords
 <img src="08-eth.png" alt="eth.PNG"/>
-At ~0.07 AUD per transaction, we could write passwords 50 times for 4.50 AUD — this is competitive with other solutions, like lastpass who charge 4.20 AUD per month (AFAIK there is no charge for reading notes — no payable constructor on the getMyNote/getMyNotes functions)
+At ~0.07 AUD per transaction, we could write passwords 50 times for 4.50 AUD — this is competitive with other solutions, like lastpass who charge 4.20 AUD per month (AFAIK there is no charge for reading notes — no payable constructor on the getMyNote/getMyNotes functions)</p>
 
 <h2>GETH + NODE + WEB3</h2>
-To initiate a geth node (I'm running Geth 1.8.20-stable built on amd64 with go1.11.4): 
+
+
+<p>To initiate a geth node (I&rsquo;m running Geth 1.8.20-stable built on amd64 with go1.11.4):</p>
+
 <script src="https://gist.github.com/dylan-lom/d73191dde9ba45108ab0a2cf895f2844.js"></script>
 
-Since Web3 v1.00 is only provided as an npm package, we will later need to use webpack to transpile it into native js, for now we'll just invoke node from the command line
 
-Web3 1.00 has depreciated http providers, so we now need to use IPC to communicate with the geth node:
+<p>Since Web3 v1.00 is only provided as an npm package, we will later need to use webpack to transpile it into native js, for now we&rsquo;ll just invoke node from the command line</p>
+
+<p>Web3 1.00 has depreciated http providers, so we now need to use IPC to communicate with the geth node:</p>
 
 <pre><code>geth --datadir /tmp/geth --networkid 15 --rpc --rpcport "8545" --rpcaddr "localhost" --rpccorsdomain "*"</code></pre>
 
-then in node we can run:
+
+<p>then in node we can run:</p>
+
 <pre><code>const net = require('net');
 const Web3 = require('web3');
 const web3 = new Web3('/tmp/geth/geth.ipc', net);
 web3.eth.getAccounts().then(console.log); //outputs accounts array</code></pre>
 
-to connect via <a href="http://remix.ethereum.org">remix</a>, we can set Environment->web3 provider->http://localhost:8545 (in the Run tab), so that we can deploy a smart contract to our node.
+
+<p>to connect via <a href="http://remix.ethereum.org">remix</a>, we can set Environment->web3 provider->http://localhost:8545 (in the Run tab), so that we can deploy a smart contract to our node.</p>
 
 <hr>
+
+
 <h2>Some Progress (at last)</h2>
-After some playing around with geth, I ran into the frustrating issue where when I tried to import the local account into MetaMask[1], the balance would show 0eth regardless of how it'd been declared in the genesis block. This meant that I couldn't deploy a contract via injected web3 in remix, as MetaMask said there was insufficient balance, despite remix detecting the balance correctly.
 
 
-Luckily, <code>ganache-cli -h localhost</code> works well with MM, and the balance was detected. From here I was able to deploy a test contract
+<p>After some playing around with geth, I ran into the frustrating issue where when I tried to import the local account into MetaMask[1], the balance would show 0eth regardless of how it&rsquo;d been declared in the genesis block. This meant that I couldn&rsquo;t deploy a contract via injected web3 in remix, as MetaMask said there was insufficient balance, despite remix detecting the balance correctly.</p>
+
+<p>Luckily, <code>ganache-cli -h localhost</code> works well with MM, and the balance was detected. From here I was able to deploy a test contract</p>
+
 <script src="https://gist.github.com/dylan-lom/77eeba7e19be0d5f9aae870b17af2a21.js"></script>
 
-Then in the node interactive console I ran
+
+<p>Then in the node interactive console I ran</p>
+
 <script src="https://gist.github.com/dylan-lom/438adceeb29622889383e398f76bb7f7.js"></script>
 
+
+
+
 <hr>
+
+
 <h2>A Note on Webpack</h2>
-Since we now need to use webpack to provide the Web3 library, we need a workaround to get <code>button onclick="myfunc();"></code> to work since the function <a href="https://stackoverflow.com/a/35825562">won't be added to the global scope when we transpile w/ webpack</a>
 
-As suggested in the SO answer, we could assign it to the window object:
-<code>window.myFunc = function(){...}</code>
+
+<p>Since we now need to use webpack to provide the Web3 library, we need a workaround to get <code>button onclick=&ldquo;myfunc();&rdquo;></code> to work since the function <a href="https://stackoverflow.com/a/35825562">won&rsquo;t be added to the global scope when we transpile w/ webpack</a></p>
+
+<p>As suggested in the SO answer, we could assign it to the window object:
+<code>window.myFunc = function(){&hellip;}</code>
 Or use js to detect clicks
-<code>document.getElementById('buttonID').onClick = function(){...}</code>
-N.B. For the second method to work, we need to embed the script after the button is created in the DOM (ie. at the bottom of the html body)
+<code>document.getElementById(&lsquo;buttonID&rsquo;).onClick = function(){&hellip;}</code>
+N.B. For the second method to work, we need to embed the script after the button is created in the DOM (ie. at the bottom of the html body)</p>
 
 <hr>
+
+
 <h2>Further Testing Required</h2>
-There are still several things I need to test:
+
+
+<p>There are still several things I need to test:</p>
 
 <ul>
-	<li>Using the actual NoteChain contract with Web3 1.00</li>
-	<li>A test html in preparation for the contract</li>
-	<li>Interactions between Webpack and Chrome extension</li>
-	<li>Interactions between Web3 and chrome extensions</li>
-	<li>Interactions between MetaMask and chrome extensions</li>
-	<li>Detecting login pages</li>
-	<li>Autofilling login pages</li>
-	<li>En-/De-crypting passwords</li>
+    <li>Using the actual NoteChain contract with Web3 1.00</li>
+    <li>A test html in preparation for the contract</li>
+    <li>Interactions between Webpack and Chrome extension</li>
+    <li>Interactions between Web3 and chrome extensions</li>
+    <li>Interactions between MetaMask and chrome extensions</li>
+    <li>Detecting login pages</li>
+    <li>Autofilling login pages</li>
+    <li>En-/De-crypting passwords</li>
 </ul>
 
+
+
+
 <hr>
-Published: 
+
+
+<p>Published:2019-06-03</p>
 </body>
 </html>

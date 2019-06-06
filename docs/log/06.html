@@ -1,42 +1,55 @@
-<!DOCTYPE html>
+<p>&lt;!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset=UTF-8>
   <link rel="stylesheet" type="text/css" href="../style.css">
   <title>06 - Extension Testing Cont. | Log</title>
-</head>
+</head></p>
 
-<body>
+<p><body>
   <h1>Extension Testing Cont.</h1>
-  I'm getting much more comfortable with how chrome extensions are supposed to be written, here is an example 'rule' — which is used to enable the popup when the 'conditions' are met:
+  I&rsquo;m getting much more comfortable with how chrome extensions are supposed to be written, here is an example &lsquo;rule&rsquo; — which is used to enable the popup when the &lsquo;conditions&rsquo; are met:</p>
+
 <pre><code>
 var RuleHasPass = {
-	conditions: [
-		new chrome.declarativeContent.PageStateMatcher({ //match page for conditions, 
-			//pageUrl: {hostEquals: 'some url'}, //for host matching
-			css: ["input[type='password']"] //check DOM has an input of type="password"
-		})
-	],
-	actions: [
-		new chrome.declarativeContent.ShowPageAction() //enable popup
-	]
+    conditions: [
+        new chrome.declarativeContent.PageStateMatcher({ //match page for conditions, 
+            //pageUrl: {hostEquals: 'some url'}, //for host matching
+            css: ["input[type='password']"] //check DOM has an input of type="password"
+        })
+    ],
+    actions: [
+        new chrome.declarativeContent.ShowPageAction() //enable popup
+    ]
 };
 </code></pre>
 
-For my project I'll need to check from three rules:
+
+<p>For my project I&rsquo;ll need to check from three rules:</p>
+
 <ul>
 <li>Is the url already saved? In which case we should display the 'load password' dialogue (actions:[browser.action.setPopup(...)])</li>
 <li>Is the url not saved (ie. !RuleSavedHost) but has password? display the 'saved password' dialogue</li>
 <li>else... display the 'manual save' dialogue</li>
 </ul>
 
+
+
+
 <hr>
-Other issues: 
+
+
+<p>Other issues:</p>
+
 <ul>
 <li>git doesn't work through school proxy (need to use the web UI -- which is a pain because you can't <code>git add .</code> without uploading every file)</li>
 <li>i was lazy and didn't name commits -- you can't ammend commit messages from the WebUI</li>
 </ul>
+
+
 <hr>
-Published: 2019-05-01
+
+
+<p>Published: 2019-05-01
 </body>
-</html>
+</html></p>

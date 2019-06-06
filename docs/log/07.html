@@ -1,31 +1,42 @@
-<!DOCTYPE html>
+<p>&lt;!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset=UTF-8>
   <link rel="stylesheet" type="text/css" href="../style.css">
   <title>07 - Project Woes | Log</title>
-</head>
+</head></p>
 
-<body>
+<p><body>
   <h1>07 - Project Woes</h1>
-  I'm still struggling to understand how I should be interacting between the extension, DOM/Webpage and popup.
+  I&rsquo;m still struggling to understand how I should be interacting between the extension, DOM/Webpage and popup.</p>
 
-There are several elements to an extension, for mine I am using the browser_action method over page_action, as I usually want my extension to be running:
-* browser_action: defines popup, icon, listeners <a href="https://developer.chrome.com/extensions/browserAction">[doc]</a> || <a href="https://chromium.googlesource.com/chromium/src/+/master/chrome/common/extensions/docs/examples/api/browserAction/">[examples]</a>
-* content_scripts: interact with the DOM <a href="https://developer.chrome.com/extensions/content_scripts">[doc]</a>
-* chrome.runtime: retrieve background page, listen for/respond to events <a href="https://developer.chrome.com/extensions/runtime">[doc]</a>
+<p>There are several elements to an extension, for mine I am using the browser_action method over page_action, as I usually want my extension to be running:
+* browser_action: defines popup, icon, listeners <a href="https://developer.chrome.com/extensions/browserAction">[doc]</a> || <a href="https://chromium.googlesource.com/chromium/src/+/master/chrome/common/extensions/docs/examples/api/browserAction/">[examples]</a></p>
 
-<a href="https://developer.chrome.com/extensions/background_pages">[background_pages doc]</a>
+<ul>
+<li><p>content_scripts: interact with the DOM <a href="https://developer.chrome.com/extensions/content_scripts">[doc]</a></p></li>
+<li><p>chrome.runtime: retrieve background page, listen for/respond to events <a href="https://developer.chrome.com/extensions/runtime">[doc]</a></p></li>
+</ul>
+
+
+<p><a href="https://developer.chrome.com/extensions/background_pages">[background_pages doc]</a></p>
 
 <hr>
-In other news, I've finally found a regular JS (not node js) copy of Web3[1], in the develop branch of the Web3 git repo, and have got a basic contract which saves a name and age to the VM (running locally on ganache-cli[2])
+
+
+<p>In other news, I&rsquo;ve finally found a regular JS (not node js) copy of Web3[1], in the develop branch of the Web3 git repo, and have got a basic contract which saves a name and age to the VM (running locally on ganache-cli[2])
 <img src="07-coursetro.png" alt="coursetro"/>
-Here's a quick webpage which runs setInstructor() and getInstructor() when the buttons are pressed. On the left of the recording is the output of ganache-cli
+Here&rsquo;s a quick webpage which runs setInstructor() and getInstructor() when the buttons are pressed. On the left of the recording is the output of ganache-cli</p>
+
 <iframe width="560" height="315" src="https://www.youtube.com/embed/KOaxhXN0tVI" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-[1]https://github.com/ethereum/web3.js/tree/develop/dist
-[2]https://truffleframework.com/ganache
+
+<p>[1]https://github.com/ethereum/web3.js/tree/develop/dist
+[2]https://truffleframework.com/ganache</p>
+
 <hr>
-Published: 2019-05-15
+
+
+<p>Published: 2019-05-15
 </body>
-</html>
+</html></p>

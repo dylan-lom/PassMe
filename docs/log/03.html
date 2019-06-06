@@ -1,41 +1,45 @@
-<!DOCTYPE html>
+<p>&lt;!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset=UTF-8>
   <link rel="stylesheet" type="text/css" href="../style.css">
   <title>03 - Decyphering NoteChain | Log</title>
-</head>
+</head></p>
 
-<body>
+<p><body>
   <h1>03 - Decyphering NoteChain</h1>
-  This week I printed and annoted the NoteChain program (solidity), this has helped me clear up misunderstandings / confusion about the use of events, modifiers, some types and other syntax in the language -- I've realised that NoteChain is actually quite simple and easy to understand.
+  This week I printed and annoted the NoteChain program (solidity), this has helped me clear up misunderstandings / confusion about the use of events, modifiers, some types and other syntax in the language &ndash; I&rsquo;ve realised that NoteChain is actually quite simple and easy to understand.</p>
 
-<img src="../pub/03-img_20190221_184133571.jpg" />
+<p><img src="../pub/03-img_20190221_184133571.jpg" /></p>
 
-Some useful resources I've found so far:
+<p>Some useful resources I&rsquo;ve found so far:</p>
+
 <ul>
-	<li>https://coursetro.com/courses/20/Developing-Ethereum-Smart-Contracts-for-Beginners</li>
-	<li>https://ethon.consensys.net/</li>
+    <li>https://coursetro.com/courses/20/Developing-Ethereum-Smart-Contracts-for-Beginners</li>
+    <li>https://ethon.consensys.net/</li>
 </ul>
-In line with the courstro link above, I've also begun interacting with solidity programs with the ganache-cli npm package and a html/js site.
 
-<strong>[screenshot me]</strong>
 
- 
+<p>In line with the courstro link above, I&rsquo;ve also begun interacting with solidity programs with the ganache-cli npm package and a html/js site.</p>
 
-I've decided to use the Ethereum over Tron due to the simplicity of testing -- while i can test locally with Ethereum's web3 implementation, as far as I can tell I need to connected to an official testnet to run a live version of a smart contract, which I wouldn't be able to do at school).
-Something I'm still lost about is the cost of running a smart contract on the Ethereum network, the cost of eth, gas, etc. is all very removed from me at the moment as I've never bought anything on the network, I'll have to research this further.
+<p><strong>[screenshot me]</strong></p>
 
-In class we started an exercise to implement some standard algorithms in the language of our major project -- I chose to do the lotto algorithm[1], where the program is to return 6 random integers from 1-100. This was interesting, as the EVM has no "inbuilt" randomness functionality, the quick solution to this is combine and hash the block's timestamp and difficulty, then mod it to the range required. This method allows us to create 1 random number, however the block's details will stay the same for the execution, so to generate several pseudo-random numbers we also need to include a nonce value.
+<p>I&rsquo;ve decided to use the Ethereum over Tron due to the simplicity of testing &ndash; while i can test locally with Ethereum&rsquo;s web3 implementation, as far as I can tell I need to connected to an official testnet to run a live version of a smart contract, which I wouldn&rsquo;t be able to do at school).
+Something I&rsquo;m still lost about is the cost of running a smart contract on the Ethereum network, the cost of eth, gas, etc. is all very removed from me at the moment as I&rsquo;ve never bought anything on the network, I&rsquo;ll have to research this further.</p>
 
-<code>return uint8(uint256(keccak256(abi.encodePacked(block.timestamp, block.difficulty, nonce)))%range);</code>
+<p>In class we started an exercise to implement some standard algorithms in the language of our major project &ndash; I chose to do the lotto algorithm[1], where the program is to return 6 random integers from 1-100. This was interesting, as the EVM has no &ldquo;inbuilt&rdquo; randomness functionality, the quick solution to this is combine and hash the block&rsquo;s timestamp and difficulty, then mod it to the range required. This method allows us to create 1 random number, however the block&rsquo;s details will stay the same for the execution, so to generate several pseudo-random numbers we also need to include a nonce value.</p>
 
-My random function, where range is a parameter of the random() function. Note that this method is acceptable for quick, unimportant RNG, however since the miners influence the timestamp, it's not considered appropriate for more important applications (arguably a better solution should be used for a lottery, where we take user input from each of the entrants to formulate the random values, somewhat like RANDAO[2])
+<p><code>return uint8(uint256(keccak256(abi.encodePacked(block.timestamp, block.difficulty, nonce)))%range);</code></p>
 
-[1]https://github.com/dylan-lom/std-alg-sol/blob/master/Lotto.sol
+<p>My random function, where range is a parameter of the random() function. Note that this method is acceptable for quick, unimportant RNG, however since the miners influence the timestamp, it&rsquo;s not considered appropriate for more important applications (arguably a better solution should be used for a lottery, where we take user input from each of the entrants to formulate the random values, somewhat like RANDAO[2])</p>
 
-[2]https://github.com/randao/randao
+<p>[1]https://github.com/dylan-lom/std-alg-sol/blob/master/Lotto.sol</p>
+
+<p>[2]https://github.com/randao/randao</p>
+
 <hr>
-Published: 2019-02-17
+
+
+<p>Published: 2019-02-17
 </body>
-</html>
+</html></p>

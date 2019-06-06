@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset=UTF-8>
+  <link rel="stylesheet" type="text/css" href="../style.css">
+  <title>04 - Extension Test | Log</title>
+</head>
+
+<body>
+  <h1>04 - Extension Test</h1>
+  It's been a while... I've been focusing on the course work (interrelationship between hardware and software)
+
+I've started to work on a chrome browser extension[1], but am having trouble installing the web3 library (npm fails, there isn't a ​`dist/​node.min.js` file provided by the web3 package).  At any rate, here is the test extension, with an icon and a popup.
+
+<img src="../04-ext.png" alt="ext.PNG"/>
+
+Some notes on chrome extensions:
+<ul>
+	<li>manifest.json -- declares important info about the extension (name,  files, permissions, etc.)</li>
+	<li>background.js -- a controller script, sets up events (e.g.  when a certain page is done, run action)</li>
+	<li>popup.html -- a html page that is rendered when the extension is clicked (nb. you can use external css and js, but inline js is not allowed).</li>
+</ul>
+Full documentation at https://developer.chrome.com/extensions/getstarted
+<hr>
+The approach to getting "portable" js from the web3 node-js package seems to be as follows
+<pre><code>
+- download and extract web3 from https://github.com/ethereum/web3.js/releases
+- in web3 directory run:
+	$ npm install .
+	$ npm run-script build
+which results in populating packages/web3*/dist/ with .js files (noteably not web3.min.js though)
+ </pre></coode>
+
+On further investigation, I've found a static host of web3.min.js on jsdelivr[2], unfortunately, in recent revisions of web3, there is no longer a web3.js provided[3], and the results from the above npm operations must be packed via webpack[4].
+
+As I don't want to work out how webpack integrates with npm packages, a website, etc. I'm going to rely on an outdated version of web3.js hosted by jsdelivr
+
+[1]https://github.com/dylan-lom/PassMe/tree/master/extension
+[2]https://cdn.jsdelivr.net/npm/web3/dist/web3.min.js
+[3]https://github.com/ethereum/web3.js/issues/2263
+[4]https://webpack.js.org/
+<hr>
+Published: 2019-04-07
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset=UTF-8>
+  <link rel="stylesheet" type="text/css" href="../style.css">
+  <title>02 - Slow Going | Log</title>
+</head>
+
+<body>
+  <h1>02 - Slow Going</h1>
+  Minimal progress has been made on my project, I didn't end up doing any further work on it in the holidays.
+<ul>
+	<li>This week as an exercise, we wrote up a standard algorithm (FindDaysandMonths) in the language we would be using for our major projects.</li>
+	<li>From this I discovered that solidity isn't suited for string manipulation, become a little more comfortable with the remix IDE and wrote a piece of JS code that could interact with the output of my solidity contract [1]</li>
+	<li>I still haven't tried compiling and running my .sol contract on a local testnet (I just used the IDE's Run functionality to test), and so I haven't worked out how to directly interact with the contract via the web3.js library</li>
+</ul>
+<p style="text-align:justify;"><img src="../pub/02-remix.png" alt="remix"/></p>
+<p style="text-align:center;"><em>screencapture of remix IDE's output for my contract (printDate returns 4 hex-encoded UTF8 values)
+</em></p>
+<img src="../pub/02-mdn.png" alt="mdn" />
+<p style="text-align:center;"><em>js to format output as per standard algorithms spec.</em></p>
+On reflecting, I think it would be a good idea to first write the browser extension for the existing NoteChain contract [2], and then after becoming more familiar with solidity and understanding how NoteChain's contract works I could begin to develop my own contract.
+
+I also think it's a good idea to be backwards-compatible with the existing NoteChain contract (as chances are my contract will be far less efficient).
+
+ 
+
+[1] https://github.com/dylan-lom/std-alg-sol/blob/master/findDaysAndMonths.sol https://github.com/dylan-lom/std-alg-sol/blob/master/findDaysAndMonths.js
+
+[2] <a href="https://etherscan.io/address/0xD4737858Dd8eb9842CD0696171b781525B56086f#code">https://etherscan.io/address/0xD4737858Dd8eb9842CD0696171b781525B56086f?utm_source=StateOfTheDApps#code</a>
+<hr>
+Published: 2019-02-16
+</body>
+</html>

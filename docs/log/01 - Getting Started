@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>01 - Getting Started | Log</title>
+  <meta charset=UTF-8>
+  <link rel="stylesheet" type="text/css" href="../style.css">
+</head>
+
+<body>
+<p> It's currently a little past halfway through January Holidays -- unsuprisingly I didn't keep up with my gantt schedule over the last few weeks.</p>
+<ul>
+	<li>So far I haven't done any real work on my project in the holidays.</li>
+	<li>I've done about half of the standards algoriths (see <a href="https://github.com/dylan-lom/standard-algorithms">github</a>).</li>
+	<li>I attempted to set up a local TRON testnet, however the documentation confused me and I ran into some errors compiling.</li>
+	<li>However, since the TVM is backwards compatable with EVM, it means that I can begin working on a local Ethereum network and figure out the TRON problems later.</li>
+	<li>I followed this <a href="https://medium.com/cybermiles/running-a-quick-ethereum-private-network-for-experimentation-and-testing-6b1c23605bce">guide</a> and have a local Ethereum/Geth instance running.<img src="pub/01-eth.png" alt="eth"/><em>Left: </em>Geth js console, showing current balance, local accounts and mining status. <em>Right:</em> Output from local node (currently mining).</li>
+</ul>
+<p>Now I need to continue learning solidity and begin writing some function stubs for my program.</p>
+
+<hr>
+Published: 2019-01-14
+</body>
+</html>

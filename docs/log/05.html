@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset=UTF-8>
+  <link rel="stylesheet" type="text/css" href="../style.css">
+  <title>05 - Extension Testing Cont. | Log</title>
+</head>
+
+<body>
+  <h1>Extension Testing Cont.</h1>
+  Here's a rough idea of how the extension needs to work (building upon the original part 1 documentation)
+<pre><code>
+if (location.href is found in saved_sites) {
+	chrome.browserAction.setIcon(32g);
+	chrome.browserAction.setPopup("popup_load.html");
+} else if (loginform()) {
+	chrome.browserAction.setIcon(32y);
+	chrome.browserAction.setPopup("popup_save.html");
+} else {
+	chrome.browserAction.setIcon(32);
+	chrome.browserAction.setPopup("popup_manual.html");
+}
+</code></pre>
+https://developer.chrome.com/extensions/browserAction
+
+The following code would need to be put in the background.js script of the extension
+
+<hr>
+For the detection of a login form (<code>loginform()</code>), I will need to develop a filter list of common form id's.
+
+At the start, the easiest way to do this is to search for a input of type password on the page, e.g.
+<pre><code>
+var inputs = Array.from(document.getElementsByTagName("input"));
+for (i = 0; i<inputs.length; i++){
+	if (inputs[i].type=='password'){return true}
+}
+</code></pre>
+
+<hr>
+To fill the fields, we can use the <code>id.value</code> functionality, e.g.
+<pre><code>
+username.value='dlom';
+password.value='password321';
+</code></pre>
+The difficulty here is recognizing what input fields the username and password belongs to, like in the <code>loginform()</code> function, locating the input of type 'password' could be used -- perhaps from here we could search for a nearby form? 
+<hr>
+Published: 2019-04-19
+</body>
+</html>

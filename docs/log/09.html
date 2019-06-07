@@ -25,7 +25,7 @@ As a practice run, I've compiled the <a href="https://coursetro.com/courses/20/D
 [tba]</p>
 <p>Learning experiences:
 <ul>
-<li><strike>Exporting required functions to the window namespace seems to work more consistantly than adding the .onclick=... via js<strike>for chrome extensions, inline onclick is disabled for 'safety' reasons.</li>
+<li><strike>Exporting required functions to the window namespace seems to work more consistantly than adding the .onclick=... via js</strike>for chrome extensions, inline onclick is disabled for 'safety' reasons.</li>
 <li>Node uses the 'global' namespace to refer to native js' 'window' -- webpack transpiles references to 'global.X' =&gt; 'window.X'</li>
 <li>For some reason, the method I was using to get an account before, <code>web3.eth.getAccounts()[0]</code> doesn't work, maybe I'm doing something wrong, A better of way of doing this is: <code>web3.eth.getAccounts( (err, resp) => { global.acc = resp[0]; } );</code>, although for some reason this only works in the interactive node console.</li>
 <li>To prevent the webpage from re-loading on submission, we return false after our onclick statement, e.g. <code>onclick="myFunc(); return false;"</code>

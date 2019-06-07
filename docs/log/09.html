@@ -18,11 +18,11 @@ Turns out, this is easy but unclear due to <a href="https://ethereum.stackexchan
 //returns: '0x7473'</code></pre>
 </p>
 <hr>
-As a practice run, I've compiled the <a href="https://coursetro.com/courses/20/Developing-Ethereum-Smart-Contracts-for-Beginners">Coursetro</a> contract and a web page to interact with it in webpack<p>As an independant .html:
+As a practice run, I've compiled the <a href="https://coursetro.com/courses/20/Developing-Ethereum-Smart-Contracts-for-Beginners">Coursetro</a> contract and a web page to interact with it in webpack<p>As an independant .html:<br>
 <img src="../pub/09-coursetro.gif" alt="coursetro">
 </p>
-<p>As a chrome extension:
-[tba]</p>
+<p>As a chrome extension:<br>
+<img src="../pub/09-extension.gif" alt="extension"></p>
 <p>Learning experiences:
 <ul>
 <li><strike>Exporting required functions to the window namespace seems to work more consistantly than adding the .onclick=... via js</strike>for chrome extensions, inline onclick is disabled for 'safety' reasons.</li>
@@ -32,6 +32,8 @@ As a practice run, I've compiled the <a href="https://coursetro.com/courses/20/D
 </li>
 <li>Solidity contracts return a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a>, which we need to handle via a .then(function(val){...})</li>
 <li>Contracts return a BigNumber, which need to be converted to an int via their method <code>BN.toNumber()</code></li>
+<li>Chrome extensions ignore the <code>return false;</code> hack for forms, so we need to use a button instead (although a button would've been more appropriate all along now that I think about it); we use something like: <code>myButton.onclick = myFunc</code>, without the parenthesis</li>
+  
 </ul>
 <hr>
 <p>Published: 2019-06-07</p>

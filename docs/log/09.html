@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset=UTF-8>
+  <link rel="stylesheet" type="text/css" href="../style.css">
+  <title>09 - Webpack Practice | Log</title>
+</head>
+
+<body>
+  <h1>09 - Webpack Practice</h1>
+<p>I've updated the <a href="https://gist.github.com/dylan-lom/de7abbe220df2bf81fa3183ebb3303bd">NoteChain</a> contract for compiler version 0.5.1, just for ease of use atm.</p>
+<p>I'm not particularly sure how to prepare arguments before passing them to the solidity contract -- in particular the bytesX type — I've found <a href="https://ethereum.stackexchange.com/questions/23058/how-to-convert-string-to-bytes32-in-web3js">this SO question</a>, however it only addresses bytes32, wheras NoteChain takes bytes2 as the publicKey (which I'm still unsure if it's necessary).</p>
+<p>We need to truncate the output of fromAscii, e.g.
+<pre><code>web3.utils.asciiToHex('ts');
+//returns: '0x7473000000000000000000000000000000000000000000000000000000000000'</code></pre>
+Turns out, this is easy but unclear due to <a href="https://ethereum.stackexchange.com/questions/23058/how-to-convert-string-to-bytes32-in-web3js">some confusing documentation (length argument is not mentioned in example call)</a>
+<pre><code>web3.utils.asciiToHex('ts', 2);
+//returns: '0x7473'</code></pre>
+</p>
+<hr>
+As a practice run, I've compiled the <a href="https://coursetro.com/courses/20/Developing-Ethereum-Smart-Contracts-for-Beginners">Coursetro</a> contract and a web page to interact with it in webpack<p>As an independant .html:
+<img src="../pub/09-coursetro.gif" alt="coursetro">
+</p>
+<p>As a chrome extension:
+[tba]</p>
+<p>Learning experiences:
+<ul>
+<li><strike>Exporting required functions to the window namespace seems to work more consistantly than adding the .onclick=... via js<strike>for chrome extensions, inline onclick is disabled for 'safety' reasons.</li>
+<li>Node uses the 'global' namespace to refer to native js' 'window' -- webpack transpiles references to 'global.X' =&gt; 'window.X'</li>
+<li>For some reason, the method I was using to get an account before, <code>web3.eth.getAccounts()[0]</code> doesn't work, maybe I'm doing something wrong, A better of way of doing this is: <code>web3.eth.getAccounts( (err, resp) => { global.acc = resp[0]; } );</code>, although for some reason this only works in the interactive node console.</li>
+<li>To prevent the webpage from re-loading on submission, we return false after our onclick statement, e.g. <code>onclick="myFunc(); return false;"</code>
+</li>
+<li>Solidity contracts return a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a>, which we need to handle via a .then(function(val){...})</li>
+<li>Contracts return a BigNumber, which need to be converted to an int via their method <code>BN.toNumber()</code></li>
+</ul>
+<hr>
+<p>Published: 2019-06-07</p>
+<p><a href="index.html">Go Back</a></p>
+</body>
+</html>
+
+/p>

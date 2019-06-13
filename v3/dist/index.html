@@ -16,11 +16,17 @@
 			//initialise local web3 instance, accounts, etc.
 			console.log('Body script');
 			var _web3 = new Web3(web3.currentProvider); //set _web3 to provider used by MetaMask
-			const accs = window.ethereum.enable(); //get local account from MetaMask
-			var acc = accs[0] //default account
+			window.ethereum.enable(); //get local account from MetaMask
+			var acc = web3.eth.accounts[0] //default account, as supplied by MetaMask
 			console.log(window.acc);
 
 			createContract(); //initialise window.contract object (see contract.js)
+
+			h = _web3.utils.asciiToHex;
+			function addPass(_m, _h, _p){
+				contract.methods.addPass(h(_m, 2), h(_h, 12), h(_p, 32)).send({from: acc});
+			}
+
 		</script>
 
 	</body>

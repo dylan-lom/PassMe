@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+
+<html lang="en">
+	<head>
+		<meta charset=UTF-8>
+		<title>NoteChain</title>
+		<link rel="stylesheet" type="text/css" href="style.css">
+	</head>
+
+	<body>
+		<h1>NoteChain Demo</h1>
+
+		<script type="text/javascript" src="main.js"></script> <!--get webpacked Web3 library-->
+		<script type="text/javascript" src="contract.js"></script> <!--get NoteChain smart contract interface-->
+		<script>
+			//initialise local web3 instance, accounts, etc.
+			console.log('Body script');
+			var _web3 = new Web3(web3.currentProvider); //set _web3 to provider used by MetaMask
+			const accs = window.ethereum.enable(); //get local account from MetaMask
+			var acc = accs[0] //default account
+			console.log(window.acc);
+
+			createContract(); //initialise window.contract object (see contract.js)
+		</script>
+
+	</body>
+</html>

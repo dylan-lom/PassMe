@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset=UTF-8>
+  <link rel="stylesheet" type="text/css" href="../style.css">
+  <title>10 - Metamask | Log</title>
+</head>
+
+<body>
+ <h1>10 - Metamask</h1>
+ <p>Feeling better about using Webpack, I&rsquo;ve tried working with the NoteChain contract, adopting the deployment used in <a href="https://medium.com/coinmonks/solidity-and-web3-js-141115b0f8c5">this tutorial</a></p>
+
+<p>So far I&rsquo;ve just been working with the Node interactive console (invoked via <code>$ node</code>)</p>
+
+<p>In order to test the NoteChain contract, we need to authenticate our account via web3.eth.accounts, we can do this via:</p>
+
+<p><code>web3.eth.accounts.privateKeyToAccount(privKey)</code></p>
+
+<p>Which imports a single account from the private key (output when starting ganache-cli), the method returns an <a href="https://web3js.readthedocs.io/en/1.0/web3-eth-accounts.html#eth-accounts-create-return">account object</a>.</p>
+
+<p>Then, when we want to send a txn to the blockchain, we can run</p>
+
+<p><code>contract.methods.myFunc().send({from: myAccount}).then(&hellip;)</code></p>
+
+<p>Frustratingly, when testing this, I recieved the following error:</p>
+
+<script src="https://gist.github.com/dylan-lom/84999313eb496ce00890b2bd5b41c2a1.js"></script>
+
+
+<p>Unfortunately, because Web3 v1.00 is still in beta, there isn&rsquo;t a wide userbase, and this issue doesn&rsquo;t seem to have been encountered much, I found the following results when searching on Google:</p>
+
+<ul>
+<li><a href="https://github.com/ethereum/web3.js/issues/2281">TypeError: Duplicated method <strong>ob</strong>. This method is defined as RPC call and as Object method.</a> &mdash; this relates to specifically to Vue.js, and the solution seems to be reverting to an earlier version of Web3</li>
+<li><a href="https://ethereum.stackexchange.com/questions/63548/contract-methods-undefined">Contract Methods Undefined</a> &mdash; seems to have been an issue with how the user was creating their Contract instance, this hasn&rsquo;t worked for me</li>
+<li><a href="https://github.com/ethereum/web3.js/issues/2344">TypeError: Duplicated method getAccounts. This method is defined as RPC call and as Object method.</a> &mdash; no solution</li>
+</ul>
+
+
+<p>My next attempt might be to try Webpacking a test, and testing in the browser console with injected Web3 from MetaMask, although one of the SO comments seemed to indicate MetaMask still uses a pre-1.00 release of Web3.</p>
+
+<p>I&rsquo;ll also have a look over what the <a href="https://gitlab.com/notechain/front-end-generator">NoteChain frontend</a> (used by notechain.github.io) does to create the contract.</p>
+
+<hr>
+
+
+<p>After a fair amount of failure, I&rsquo;ve looked into <a href="https://metamask.github.io/metamask-docs/Main_Concepts/Getting_Started">MetaMask&rsquo;s documentation</a>, and found that to authenticate an account via MM, we can use <code>accounts = await ethereum.enable()</code>, which <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/await">await&rsquo;s</a> an asynchronous function, and return value (<em>not the promise</em>), can then be used to set a variable.</p>
+
+<p>Frustratingly, this approach doesn&rsquo;t work very well with Node, as webpack'ing a test only returned complaints about using <code>await outside of an asynch function</code>, so I think maybe a better approach would be to use Node + Webpack simply to export Web3 to the window scope, then use vanilla js to connect, etc.</p>
+
+<p>Here&rsquo;s a demo, writing some input to the blockchain:</p>
+
+<p><img src="../pub/10-metamask.gif" alt="metamask"></p>
+
+<p>I need to work out how to use <code>emit</code> statements in solidity to get the returned note id in the browser</p> <h1></h1>
+
+<hr>
+<p>Published: 2019-07-19</p>
+<p><a href="index.html">Go Back</a></p>
+</body>
+</html>

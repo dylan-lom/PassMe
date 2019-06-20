@@ -24,12 +24,14 @@
 <p><img src="../pub/11-alert.png" alert="alert"></p>
 
 <p>Troubleshooting I&rsquo;ve tried:
-* removing the payFee modifier
-* creating the <code>addPass</code> function/removing the public key
-* removing the assigning of an owner to the key (via the passToOwner mapping)
-* removing the .push'ing to the ownerPasswds array
-* removing the <code>emit PassAdded</code>
-* changing type of arguments <code>_href</code> (<code>_title</code>) and <code>_pass</code> (<code>_content</code>) to string (from bytesX)</p>
+<ul>
+<li> removing the payFee modifier</li>
+<li> creating the <code>addPass</code> function/removing the public key</li>
+<li> removing the assigning of an owner to the key (via the passToOwner mapping)</li>
+<li> removing the .push'ing to the ownerPasswds array</li>
+<li> removing the <code>emit PassAdded</code></li>
+<li> changing type of arguments <code>_href</code> (<code>_title</code>) and <code>_pass</code> (<code>_content</code>) to string (from bytesX)</p></li>
+</ul>
 
 <hr>
 
@@ -60,11 +62,15 @@
 <h2>Other Changes/Issues</h2>
 
 <p>The following additional changes have been made to my test page (v3 in the testing branch)
-* Set <code>_web3.eth.defaultAccount</code>, instead of saving a global variable acc; defaultAccount is used for the <code>from:</code> field automatically, when none is supplied.
-* Added the alias function <code>getPassCount</code> (js), which evokes the contract method of the same name, and returns the output, converted hex=>number</p>
+<ul>
+<li> Set <code>_web3.eth.defaultAccount</code>, instead of saving a global variable acc; defaultAccount is used for the <code>from:</code> field automatically, when none is supplied.</li>
+<li> Added the alias function <code>getPassCount</code> (js), which evokes the contract method of the same name, and returns the output, converted hex=>number</li>
+</ul>
+</p>
 
-<p>The following issues were encountered:
-* The first time a tab calls <code>ethereum.enable()</code>, it is async, but all of the following times it isn&rsquo;t and including an await statement causes an error, I&rsquo;m not really sure how to fix this, since I would need some sort of initialisation page that had an await, and then the actual interactive page wouldn&rsquo;t?</p>
+<p>The following issues were encountered:</p>
+<p>
+The first time a tab calls <code>ethereum.enable()</code>, it is async, but all of the following times it isn&rsquo;t and including an await statement causes an error, I&rsquo;m not really sure how to fix this, since I would need some sort of initialisation page that had an await, and then the actual interactive page wouldn&rsquo;t?</p>
 <hr>
 <p>Published: 2019-06-20</p>
 <p><a href="index.html">Go Back</a></p>

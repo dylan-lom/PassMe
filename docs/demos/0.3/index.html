@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+
+<html lang="en">
+	<head>
+		<meta charset=UTF-8>
+		<title>NoteChain</title>
+		<link rel="stylesheet" type="text/css" href="style.css">
+	</head>
+
+	<body>
+		<h1><strike>NoteChain</strike>PassMe Demo</h1>
+		<table>
+			<tr><td>Web3 Version: </td><td id="w3Version"></td></tr>
+			<tr><td>Pass Count: </td><td id="passCount"></td></tr>
+		</table>
+		<input type="button" id="getPassCountSubmit" value="Update Pass Count">
+
+		<hr>
+		<h2>Submit Pass</h2>
+		<p>
+		<table>
+			<tr><td>Metadata:</td><td><input type="number" id="passMetadata"></td></tr>
+			<tr><td>Site Url:</td><td><input type="text" id="passHref"></td></tr>
+			<tr><td>Site Pass:</td><td><input type="text" id="passPass"></td></tr>
+		</table>
+			<input type="button" id="addPassSubmit" value="Submit">
+		</p>
+
+		<hr>
+		<h2>Get Pass</h2>
+		<table>
+			<tr><td>Pass Id:</td><td><input type="number" id="gPassId"></td></tr>
+			<tr><td>Metadata:</td><td id="gPassMetadata"></td></tr>
+			<tr><td>Url:</td><td id="gPassHref"></td></tr>
+			<tr><td>Pass:</td><td id="gPassPass"></td></tr>
+		</table>
+			<input type="button" id="getPassSubmit" value="Submit">
+
+		<script type="text/javascript" src="main.js"></script> <!--get webpacked Web3 library-->
+		<script type="text/javascript" src="contract.js"></script> <!--get NoteChain smart contract interface-->
+		<script type="text/javascript" src="index.js"></script> <!--initiates stuff-->
+		<script type="text/javascript" src="watcher.js"></script> <!--set up onclick events-->
+
+	</body>
+</html>

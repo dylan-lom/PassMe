@@ -8,12 +8,15 @@
 	</head>
 
 	<body>
-		<h1>NoteChain Demo</h1>
+		<h1><strike>NoteChain</strike>PassMe Demo</h1>
+		<table>
+			<tr><td>Web3 Version: </td><td id="w3Version"></td></tr>
+			<tr><td>Pass Count: </td><td id="passCount"></td></tr>
+		</table>
+		<input type="button" id="getPassCountSubmit" value="Update Pass Count">
 
-		<p>Web3 Version: </p><p id="w3Version"></p>
-		<p>Pass Count: </p><p id="passCount"></p>
-		<input type="button" id="getPassSubmit" value="Update Pass Count">
-		
+		<hr>
+		<h2>Submit Pass</h2>
 		<p>
 		<table>
 			<tr><td>Metadata:</td><td><input type="number" id="passMetadata"></td></tr>
@@ -23,17 +26,19 @@
 			<input type="button" id="addPassSubmit" value="Submit">
 		</p>
 
+		<hr>
+		<h2>Get Pass</h2>
+		<table>
+			<tr><td>Pass Id:</td><td><input type="number" id="gPassId"></td></tr>
+			<tr><td>Metadata:</td><td id="gPassMetadata"></td></tr>
+			<tr><td>Url:</td><td id="gPassHref"></td></tr>
+			<tr><td>Pass:</td><td id="gPassPass"></td></tr>
+		</table>
+			<input type="button" id="getPassSubmit" value="Submit">
+
 		<script type="text/javascript" src="main.js"></script> <!--get webpacked Web3 library-->
 		<script type="text/javascript" src="contract.js"></script> <!--get NoteChain smart contract interface-->
-		<script>
-			//initialise local web3 instance, accounts, etc.
-			var _web3 = new Web3(web3.currentProvider); //set _web3 to provider used by MetaMask
-			window.ethereum.enable(); //get local account from MetaMask
-			_web3.eth.defaultAccount = web3.eth.accounts[0] //default account, as supplied by MetaMask
-			console.log('Using account: '+_web3.eth.defaultAccount);
-
-			createContract(); //initialise window.contract object (see contract.js)
-		</script>
+		<script type="text/javascript" src="index.js"></script> <!--initiates stuff-->
 		<script type="text/javascript" src="watcher.js"></script> <!--set up onclick events-->
 
 	</body>

@@ -100,9 +100,16 @@ function createContract()
 					}
 	];
 
-	let _addr = '0x9ca891ec9d27d7cc3880fd12db0c802b43961878'; //address that contract is deployed at on the blockchain
+	let _addr = '0x02ea17e1fab2eab75e81bf94c4409ed0e8333d72'; //address that contract is deployed at on the blockchain
 	window.contract = new _web3.eth.Contract(_abi, _addr); //create web3 Contract object, to interface with smart contract
 	window.contractVal = _web3.utils.toWei('0.0002'); //amount to pay for each txn, convert ether => wei
-	window.contract._defaultGasPrice = Math.pow(10, 9);
-	window.contract._defaultGas = 210000;
+}
+
+window.addPass = function(_metadata, _href, _pass){
+	window.contract.methods.addPass(_metadata, window._web3.utils.asciiToHex(_href, 12), window._web3.utils.asciiToHex(_pass, 32)).send({value: window.contractVal});
+}
+
+window.getPassCount = function(){
+	window.contract.methods.getPassCount().call().then(function(ret){window.passCount = ret});
+	console.log(window.passCount);
 }

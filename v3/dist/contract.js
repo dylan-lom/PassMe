@@ -100,7 +100,7 @@ function createContract()
 					}
 	];
 
-	let _addr = '0x9ca891ec9d27d7cc3880fd12db0c802b43961878'; //address that contract is deployed at on the blockchain
+	let _addr = '0x8899818d16587342a41d0cfa51e52d6c037b5db6'; //address that contract is deployed at on the blockchain
 	window.contract = new _web3.eth.Contract(_abi, _addr); //create web3 Contract object, to interface with smart contract
 	window.contractVal = _web3.utils.toWei('0.0002'); //amount to pay for each txn, convert ether => wei
 	window.contract._defaultGasPrice = Math.pow(10, 9);

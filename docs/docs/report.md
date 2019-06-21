@@ -63,6 +63,10 @@ The interface itself is a simple and monochromatic, giving it a clean and unifor
 
 I followed the HTML5 specifications and implemented elements for their designed purposes (e.g. a button to trigger JavaScript actions), and followed conventions in Web development, like embedding JavaScript files, rather than writing in-line with script elements.
 
+One consideration was which web browser(s) I should support, I decided on Chrome (despite personally prefering Firefox), due to the [overwhelming market share](https://en.wikipedia.org/wiki/Usage_share_of_web_browsers#Summary_tables) of chrome and chromium browsers.
+
+This choice does exclude some users, however the [web app](../PassMe/) is still available to all users whose browsers may be supported by MetaMask.
+
 <hr>
 
 <h2 id="2">2 Program Development & Techniques</h2>

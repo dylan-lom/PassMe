@@ -37,9 +37,17 @@ Program Development & Techniques
 
 ### Modularisation of Code
 
+In my project I modularised code into useful functions, and then seperated them into discrete files based on functionality &mdash; for example the "contract.js" script file contains modules relating to the creation of a Web3 Contract object, that can be used to communicate with the Ethereum blockchain.
+
 ### Effective and Efficient Use of Correct Control Structures
 
-### Effective Use of Appropriate Data Structure
+### Effective Use of Appropriate Data Structures
+
+In designing my solution, I mainly used simple, inbuilt datastructures, but also implemented a couple of my own for my advanced procuders:
+
+1. In "watcher.js" I created the `HTElements` JavaScript elements, which combines HTML elements, such as buttons and text-boxes, in a uniform datastructure, following the format: `HTElements.Subroutine.Id`
+
+2. In the "PassMe.sol" (solidity smart contract), I implemented the `Pass` struct, which moved away *NoteChain's* (the contract I derived *PassMe* from) `Note` struct, due to different requirements of the projects. For example I changed the `content` property to a `bytes32` type from `bytes`, since the hashed password will be of known length; I also removed the `publicKey` property and it's related functionality, since a password storage algorithm doesn't need to make user data publicly accessible.
 
 User Documentation
 ------------------

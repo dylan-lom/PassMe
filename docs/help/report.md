@@ -8,7 +8,27 @@ Interface Design
 
 Since the extension is still in a Beta-testing state, and relys on the evolving Ethereum blockchain, the user-interface and installation process is still targeted at more technical users.
 
+The interface remains relatively simple, as there isn't much interaction required.
+
+Early prototypes had several 'modes' of operation, which allowed for the user to either
+
+* Click an autofill button
+* Manually fetch a site's password to the clipboard
+* Automatically add a site's details
+* Manually add a site's details
+
+However, I have chosen simplicity of operation over these features, due to the project's early stages in development.
+
+I can later add such features based on user feedback if requested.
+
 ### Ergonomic Issues
+
+Since the application is a chrome extension, which uses web standards (HTML, CSS, JavaScript), ataining consistancy in the design was achieved through CSS styling of HTML elements, which can be re-used consistantly.
+
+The interface itself is a simple and monochromatic, giving it a clean and uniform appearance. I chose the Verdana font, since it is ubiquitos and readable.
+
+I followed the HTML5 specifications and implemented elements for their designed purposes (e.g. a button to autofill), and followed conventions in Web development, like embedding JavaScript files, rather than writing in-line with script elements.
+
 
 Program Development & Techniques
 --------------------------------

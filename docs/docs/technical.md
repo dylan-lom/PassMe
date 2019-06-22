@@ -24,7 +24,7 @@ Obviously, however, the information stored in the blockchain is publicly accessa
 
 Following common security practices ([non-technical overview](https://www.youtube.com/watch?v=w68BBPDAWr8)), a user's derived vault key
  go through a PBKDF2 SHA-256 hashing process, which recursively hashes a user's master password and some personal piece of information
- (e.g. email address) force attacks. 
+ (e.g. email address) to protect user data against brute-force attacks. 
 
 It's advised that users familiarise themselves with LastPass's security procedures (available [here](https://assets.cdngetgo.com/60/be/323790b344bf8e631ecb033e4cad/lastpass-technical-whitepaper.pdf)),
  as it provides a good introduction to the security practices that PassMe applies in applicable areas &mdash; server authentication, for

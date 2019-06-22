@@ -13,7 +13,12 @@
 			<tr><td>Web3 Version: </td><td id="w3Version"></td></tr>
 			<tr><td>Pass Count: </td><td id="passCount"></td></tr>
 		</table>
-		<input type="button" id="getPassCountSubmit" value="Update Pass Count">
+	
+		<input type="button" id="getPassCountSubmit" value="Update Pass Count"><br \>
+
+		<p>Contract Address: <input type="text" id="contractAddress"></p>
+		<input type="button" id="contractAddressSubmit" value="Create Contract">
+		
 
 		<hr>
 		<h2>Submit Pass</h2>
@@ -38,8 +43,9 @@
 
 		<script type="text/javascript" src="main.js"></script> <!--get webpacked Web3 library-->
 		<script type="text/javascript" src="contract.js"></script> <!--get NoteChain smart contract interface-->
-		<script type="text/javascript" src="index.js"></script> <!--initiates stuff-->
 		<script type="text/javascript" src="watcher.js"></script> <!--set up onclick events-->
+		<script type="text/javascript" src="crypt.js"></script> <!--encryption/decryption functions-->
+		<script type="text/javascript" src="index.js"></script> <!--initiates stuff-->
 
 	</body>
 </html>

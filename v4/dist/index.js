@@ -7,3 +7,6 @@ _web3.eth.defaultAccount = web3.eth.accounts[0] //default account, as supplied b
 console.log('Using account: '+_web3.eth.defaultAccount);
 
 createContract(); //initialise window.contract object (see contract.js)
+window.getWeb3Version(); //populate Web3 version
+
+window.initOnclick(); //setup onclick events for buttons

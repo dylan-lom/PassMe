@@ -7,6 +7,10 @@ window.HTElements = {
 		pass: document.getElementById('passPass'),
 		submit: document.getElementById('addPassSubmit')
 	},
+	createContract: {
+		address: document.getElementById('contractAddress'),
+		submit: document.getElementById('contractAddressSubmit')
+	},
 	getPassCount: {
 		count: document.getElementById('passCount'),
 		submit: document.getElementById('getPassCountSubmit')
@@ -36,10 +40,13 @@ window.getPass = function(_id){
 	});
 }
 
-HTElements.getPassCount.submit.onclick = function(){window.getPassCount();}
-HTElements.addPass.submit.onclick = function(){window.addPass(HTElements.addPass.metadata.value, HTElements.addPass.href.value, HTElements.addPass.pass.value);}
-HTElements.getPass.submit.onclick = function(){window.getPass(HTElements.getPass.id.value)};
+window.getWeb3Version = function(){
+	HTElements.web3Version.innerHTML = window._web3.version;
+}
 
-//get version and passCount (displays on webpage)
-HTElements.web3Version.innerHTML = window._web3.version;
-window.getPassCount();
+window.initOnclick = function(){
+	HTElements.addPass.submit.onclick = function(){window.addPass(HTElements.addPass.metadata.value, HTElements.addPass.href.value, HTElements.addPass.pass.value);}
+	HTElements.createContract.submit.onclick = function(){createContract(HTElements.createContract.address.value);};
+	HTElements.getPass.submit.onclick = function(){window.getPass(HTElements.getPass.id.value)};
+	HTElements.getPassCount.submit.onclick = function(){window.getPassCount();}
+}

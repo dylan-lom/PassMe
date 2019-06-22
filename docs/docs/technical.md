@@ -19,6 +19,15 @@ Obviously, however, the information stored in the blockchain is publicly accessa
  reason, the contract doesn't store any further information than the securely encrypted password itself (see
  [Password Hasing Process](#2)). This is a compromise between security and convinience that I decided was necessary to increase the
  safety of user data.
+ 
+ <h3 id="1.1">1.1 Local Encryption</h3>
+ All encryption/decryption of user data is done on the machine that requests the data &mdash; no hashing in performed in the EVM
+  itself, enforcing "host-proof" security (where the security of a user's information relys on the client's choice of encryption),
+  as well as preventing issues that may arise during insecure communications between the user and blockchain.
+  
+ By default, the master-key, used for the encryption of passwords is derived via the recursive pPBKDF2 key-derivation function](https://en.wikipedia.org/wiki/PBKDF2)
+  further details are described in [section 2](#2)
+  
 
 <h2 id="2">2 Password Hashing Process</h2>
 

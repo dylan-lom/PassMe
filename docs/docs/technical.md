@@ -24,7 +24,9 @@ Obviously, however, the information stored in the blockchain is publicly accessa
 
 Following common security practices ([non-technical overview](https://www.youtube.com/watch?v=w68BBPDAWr8)), all passwords go through
  a PBKDF2 SHA-256 hashing process, which recursively hashes the passwords 10^1000 times, in order to protect user data from brute-
- force attacks. Technical documentation of LastPass's security procedures is available [here](https://assets.cdngetgo.com/60/be/323790b344bf8e631ecb033e4cad/lastpass-technical-whitepaper.pdf),
- and provides a good introduction to the security practices that PassMe applies in applicable areas &mdash; server authentication, for
+ force attacks. 
+
+It's advised that users familiarise themselves with LastPass's security procedures (available [here](https://assets.cdngetgo.com/60/be/323790b344bf8e631ecb033e4cad/lastpass-technical-whitepaper.pdf)),
+ as it provides a good introduction to the security practices that PassMe applies in applicable areas &mdash; server authentication, for
  example, is not an issue that PassMe is concerned with, as it relies on the Ethereum blockchain's underlying secure authentication
  methods for users.

@@ -8,9 +8,7 @@ Technical Documentation
 
 <h2 id="1">1 PassMe Smart Contract</h2>
 
-[View code](https://github.com/dylan-lom/PassMe/blobl/master/PassMe.sol)
-
-The Ethereum serves as an immutable storage space where all encrypted user data is stored.
+The Ethereum blockchain serves as an immutable storage space where all encrypted user data is stored.
 
 Inbuilt into the contract is address authentication, to confirm that the contract only has access to the user's own password vault. This
  is achieved in the `onlyOwnerOf` modifier, which requires that the address of the message sender matches the address that wrote the

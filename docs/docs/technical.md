@@ -3,8 +3,8 @@ Technical Documentation
 
 <h2 id="0">0 Contents</h2>
 
-[1 PassMe Smart Contract](#1)
-[2 Password Hashing Process](#2)
+[1 PassMe Smart Contract](#1)  
+[2 Password Hashing Process](#2)  
 
 <h2 id="1">1 PassMe Smart Contract</h2>
 

@@ -10,8 +10,8 @@ contract PassMe {
     // Data structure to store passwords
     struct Pass {
         uint16 metadata;
-        bytes12 href;
-        bytes32 pass;
+        bytes href;
+        bytes pass;
     }
     
     // array of saved passwords
@@ -46,7 +46,7 @@ contract PassMe {
     
     // PASS RELATED
     // _PAYABLE_
-    function addPass(uint16 _metadata, bytes12 _href, bytes32 _pass) external payable payFee {
+    function addPass(uint16 _metadata, bytes calldata _href, bytes calldata _pass) external payable payFee {
         uint64 id = uint64(passwds.push(Pass(_metadata, _href, _pass)));
         passToOwner[id] = msg.sender;
         ownerPasswds[msg.sender].push(id);
@@ -58,7 +58,7 @@ contract PassMe {
         return uint64(passwds.length);
     }
     
-    function getPass(uint64 _passId) external onlyOwnerOf(_passId) view returns (uint16, bytes12, bytes32) {
+    function getPass(uint64 _passId) external onlyOwnerOf(_passId) view returns (uint16, bytes memory, bytes memory) {
         return (passwds[_passId].metadata, passwds[_passId].href, passwds[_passId].pass);
     }
 }

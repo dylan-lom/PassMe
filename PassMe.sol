@@ -1,5 +1,9 @@
 pragma solidity ^0.5.1;
 
+// PassMe, by Dylan Lom
+// v0.2
+// Forked from NoteChain
+
 contract PassMe {
     // EVENTS
     event PassAdded(uint64 id); // used to trigger events in Web3
@@ -10,8 +14,8 @@ contract PassMe {
     // Data structure to store passwords
     struct Pass {
         uint16 metadata;
-        bytes href;
-        bytes pass;
+        string href; //unfortunately, these will have to be strings (i think)
+        string pass;
     }
     
     // array of saved passwords
@@ -46,7 +50,7 @@ contract PassMe {
     
     // PASS RELATED
     // _PAYABLE_
-    function addPass(uint16 _metadata, bytes calldata _href, bytes calldata _pass) external payable payFee {
+    function addPass(uint16 _metadata, string calldata _href, string calldata _pass) external payable payFee {
         uint64 id = uint64(passwds.push(Pass(_metadata, _href, _pass)));
         passToOwner[id] = msg.sender;
         ownerPasswds[msg.sender].push(id);
@@ -58,7 +62,7 @@ contract PassMe {
         return uint64(passwds.length);
     }
     
-    function getPass(uint64 _passId) external onlyOwnerOf(_passId) view returns (uint16, bytes memory, bytes memory) {
+    function getPass(uint64 _passId) external onlyOwnerOf(_passId) view returns (uint16, string memory, string memory) {
         return (passwds[_passId].metadata, passwds[_passId].href, passwds[_passId].pass);
     }
 }

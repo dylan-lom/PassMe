@@ -29,9 +29,10 @@ window.HTElements = {
 }
 
 window.addPass = function(_metadata, _href, _pass){
-	metadata = window.encrypt(_metadata, window.masterKey);
-	href = window.encrypt(_href)
-	window.contract.methods.addPass(_metadata, window._web3.utils.asciiToHex(_href, 12), window._web3.utils.asciiToHex(_pass, 32)).send({value: window.contractVal});
+	metadata = _metadata;
+	href = window.encrypt(_href, window.masterKey);
+	pass = window.encrypt(_pass, window.masterKey);
+	window.contract.methods.addPass(metadata, href, pass).send({value: window.contractVal});
 }
 
 window.getPassCount = function(){
@@ -40,9 +41,11 @@ window.getPassCount = function(){
 
 window.getPass = function(_id){
 	window.contract.methods.getPass(_id).call().then(function(r){
+		console.log(r);
+		console.log(r[1]+'\n'+r[2]);
 		HTElements.getPass.metadata.innerHTML = r[0];
-		HTElements.getPass.href.innerHTML = window._web3.utils.hexToAscii(r[1]);
-		HTElements.getPass.pass.innerHTML = window._web3.utils.hexToAscii(r[2]);
+		HTElements.getPass.href.innerHTML = decrypt(r[1], masterKey);
+		HTElements.getPass.pass.innerHTML = decrypt(r[2], masterKey);
 	});
 }
 

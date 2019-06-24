@@ -27,18 +27,22 @@ window.createContract = function(_addr)
 			"type": "function"
 		},
 		{
-			"constant": true,
 			"inputs": [],
-			"name": "getPassCount",
-			"outputs": [
+			"payable": false,
+			"stateMutability": "nonpayable",
+			"type": "constructor"
+		},
+		{
+			"anonymous": false,
+			"inputs": [
 				{
-					"name": "",
+					"indexed": false,
+					"name": "id",
 					"type": "uint64"
 				}
 			],
-			"payable": false,
-			"stateMutability": "view",
-			"type": "function"
+			"name": "PassAdded",
+			"type": "event"
 		},
 		{
 			"constant": true,
@@ -70,6 +74,62 @@ window.createContract = function(_addr)
 		{
 			"constant": true,
 			"inputs": [],
+			"name": "getPassCount",
+			"outputs": [
+				{
+					"name": "",
+					"type": "uint64"
+				}
+			],
+			"payable": false,
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"constant": true,
+			"inputs": [],
+			"name": "getPassVault",
+			"outputs": [
+				{
+					"components": [
+						{
+							"name": "metadata",
+							"type": "uint16"
+						},
+						{
+							"name": "href",
+							"type": "string"
+						},
+						{
+							"name": "pass",
+							"type": "string"
+						}
+					],
+					"name": "",
+					"type": "tuple[]"
+				}
+			],
+			"payable": false,
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"constant": true,
+			"inputs": [],
+			"name": "getPasswds",
+			"outputs": [
+				{
+					"name": "",
+					"type": "uint64[]"
+				}
+			],
+			"payable": false,
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"constant": true,
+			"inputs": [],
 			"name": "owner",
 			"outputs": [
 				{
@@ -80,30 +140,11 @@ window.createContract = function(_addr)
 			"payable": false,
 			"stateMutability": "view",
 			"type": "function"
-		},
-		{
-			"inputs": [],
-			"payable": false,
-			"stateMutability": "nonpayable",
-			"type": "constructor"
-		},
-		{
-			"anonymous": false,
-			"inputs": [
-				{
-					"indexed": false,
-					"name": "id",
-					"type": "uint64"
-				}
-			],
-			"name": "PassAdded",
-			"type": "event"
 		}
-	];
-
+	]
 
 	window.contract = new _web3.eth.Contract(_abi, _addr); //create web3 Contract object, to interface with smart contract
 	window.contractVal = _web3.utils.toWei('0.0002'); //amount to pay for each txn, convert ether => wei
 	window.contract._defaultGasPrice = Math.pow(10, 9);
-	window.contract._defaultGas = 210000;
+	window.contract._defaultGas = window._web3.defaultGas;
 }

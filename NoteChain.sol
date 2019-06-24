@@ -20,8 +20,8 @@ contract NoteChain {
 
         struct Note {
                 uint16 metadata;
-                bytes2 publicKey; 
-                // publicKey: generated client-side, 
+                bytes2 publicKey;
+                // publicKey: generated client-side,
                 // it will create a code for share URL-> publicKey + hex(_noteId)
 
                 bytes12 title;

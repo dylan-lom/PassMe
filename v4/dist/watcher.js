@@ -11,6 +11,10 @@ window.HTElements = {
 		address: document.getElementById('contractAddress'),
 		submit: document.getElementById('contractAddressSubmit')
 	},
+	deriveMasterKey: {
+		pass: document.getElementById('deriveMasterKeyPass'),
+		submit: document.getElementById('deriveMasterKeySubmit')
+	},
 	getPassCount: {
 		count: document.getElementById('passCount'),
 		submit: document.getElementById('getPassCountSubmit')
@@ -25,6 +29,8 @@ window.HTElements = {
 }
 
 window.addPass = function(_metadata, _href, _pass){
+	metadata = window.encrypt(_metadata, window.masterKey);
+	href = window.encrypt(_href)
 	window.contract.methods.addPass(_metadata, window._web3.utils.asciiToHex(_href, 12), window._web3.utils.asciiToHex(_pass, 32)).send({value: window.contractVal});
 }
 
@@ -47,6 +53,7 @@ window.getWeb3Version = function(){
 window.initOnclick = function(){
 	HTElements.addPass.submit.onclick = function(){window.addPass(HTElements.addPass.metadata.value, HTElements.addPass.href.value, HTElements.addPass.pass.value);}
 	HTElements.createContract.submit.onclick = function(){createContract(HTElements.createContract.address.value);};
+	HTElements.deriveMasterKey.submit.onclick = function(){window.deriveMasterKey(HTElements.deriveMasterKey.pass.value);};
 	HTElements.getPass.submit.onclick = function(){window.getPass(HTElements.getPass.id.value)};
 	HTElements.getPassCount.submit.onclick = function(){window.getPassCount();}
 }

@@ -2,14 +2,15 @@ function deriveMasterKey(pass)
 //takes a (master) password and derives a master key
 {
 	let key = pass; //for the first pass, we use pass as the 'key', afterwards we are re-hashing the key
-	let salt = window._web3.defaultAccount; //we use the user's account as the salt
-	for (i=0; i<Math.pow(10,3); i++)
+	let salt = window.contract.defaultAccount; //we use the user's account as the salt (contract is usually the most reliable place for this to be)
+	for (i=0; i<Math.pow(10,2); i++)
 	//repeat 1000 times
 	{
 		key = window.Crypto.pbkdf2Sync(key, salt, Math.pow(10, 2), 256, 'sha512'); //run PBKDF function 100 times, generating a 256b key, using the SHA512 algorithm
 	}
 	//in total, the derivation process is run 100*1000 = 10^5 times
-	return key.toString('hex'); //return hex or derived key
+	window.masterKey = key.toString('hex'); //return hex or derived key
+	window.alert(window.masterKey);
 }
 
 function encrypt(pass, key)

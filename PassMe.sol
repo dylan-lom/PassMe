@@ -2,7 +2,7 @@ pragma solidity ^0.5.1;
 pragma experimental ABIEncoderV2; //required to return arrays of strings
 
 // PassMe, by Dylan Lom
-// v0.2
+// v0.3
 // Forked from NoteChain
 
 contract PassMe {

@@ -56,7 +56,7 @@ function divGetVault()
   //dialogue + retrieve user's vault
   window.divVisibility(hidden);
   HTElements.getVault.div.style.display = visible;
-  window.getVault();
+  window.getVault(1); //passing 1 makes the function continue to the next display
 }
 
 function divAddPass()

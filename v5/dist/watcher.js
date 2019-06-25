@@ -59,31 +59,6 @@ window.HTElements = {
 
 }
 
-window.addPass = function(_metadata, _href, _pass){
-	metadata = _metadata;
-	href = window.encrypt(_href, window.masterKey);
-	pass = window.encrypt(_pass, window.masterKey);
-	window.contract.methods.addPass(metadata, href, pass).send({value: window.contractVal});
-}
-
-window.getPassCount = function(){
-	window.contract.methods.getPassCount().call().then(function(r){HTElements.getPassCount.count.innerHTML = window._web3.utils.hexToNumber(r);});
-}
-
-window.getPass = function(_id){
-	window.contract.methods.getPass(_id).call().then(function(r){
-		console.log(r);
-		console.log(r[1]+'\n'+r[2]);
-		HTElements.getPass.metadata.innerHTML = r[0];
-		HTElements.getPass.href.innerHTML = decrypt(r[1], masterKey);
-		HTElements.getPass.pass.innerHTML = decrypt(r[2], masterKey);
-	});
-}
-
-window.getWeb3Version = function(){
-	HTElements.web3Version.innerHTML = window._web3.version;
-}
-
 window.initOnclick = function(){
 	HTElements.addPass.submit.onclick = function(){
 		window.addPass(HTElements.addPass.metadata.value, HTElements.addPass.href.value, HTElements.addPass.pass.value);
@@ -109,6 +84,7 @@ window.divVisibility = function(mode){
 	HTElements.createContract.div.style.display = mode;
 	HTElements.deriveMasterKey.div.style.display = mode;
 	HTElements.getPass.div.style.display = mode;
+	HTElements.getVault.div.style.display = mode;
 	HTElements.loginEthereum.div.style.display = mode;
 	HTElements.noEth.div.style.display = mode;
 }

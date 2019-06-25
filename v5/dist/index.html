@@ -10,15 +10,13 @@
 	<body>
 		<h1>PassMe v0.5</h1>
 
-		<div id="loginEthereum">
-			<h2>Please connect PassMe to your Ethereum Account (via MetaMask)</h2>
+		<div id="noEth">
+			<h2>Sorry!</h2>
+			<p>Please install <a href="https://metamask.io/">MetaMask</a> to use PassMe</p>
 		</div>
 
-		<div id="loginMasterPass">
-			<h2>Please enter your master password</h2>
-			<table>
-				<tr><td><input type="text" id="deriveMasterKeyPass"></td><td><input type="button" id="deriveMasterKeySubmit" value="Derive Master Key"></td></tr>
-			</table>
+		<div id="loginEthereum">
+			<h2>Please connect PassMe to your Ethereum Account (via MetaMask)</h2>
 		</div>
 
 		<div id="createContract">
@@ -28,12 +26,24 @@
 			</tr></table>
 		</div>
 
+		<div id="deriveMasterKey">
+			<h2>Please enter your master password</h2>
+			<table>
+				<tr><td><input type="password" id="deriveMasterKeyPass"></td><td><input type="button" id="deriveMasterKeySubmit" value="Derive Master Key"></td></tr>
+			</table>
+		</div>
+
+		<div id="getVault">
+			<h2>Please wait...</h2>
+			<p>Currently retrieving password vault...</p>
+		</div>
+
 		<div id="addPass">
 			<h2>Save a Password</h2>
 			<table>
 				<tr><td>Metadata:</td><td><input type="number" id="addPassMetadata"></td></tr>
 				<tr><td>Site Url:</td><td><input type="text" id="addPassHref"></td></tr>
-				<tr><td>Site Pass:</td><td><input type="text" id="addPassPass"></td></tr>
+				<tr><td>Site Pass:</td><td><input type="password" id="addPassPass"></td></tr>
 				<tr><td><input type="button" id="addPassSubmit" value="Submit"></td></tr>
 			</table>
 			<input type="button" id="showGetPass" class="navButton" value="Retrieve a Password">
@@ -42,7 +52,7 @@
 		<div id="getPass">
 			<h2>Retrieve a Password</h2>
 			<table>
-				<tr><td>URL:</td><td><input type="number" id="getPassHref"></td></tr>
+				<tr><td>URL:</td><td><input type="number" id="getPassUrl"></td></tr>
 				<tr><td><input type="button" id="getPassSubmit" value="Submit"></td></tr>
 			</table>
 			<table >

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+
+<html lang="en">
+	<head>
+		<meta charset=UTF-8>
+		<title>NoteChain</title>
+		<link rel="stylesheet" type="text/css" href="style.css">
+	</head>
+
+	<body>
+		<h1>PassMe v0.5</h1>
+
+		<div id="loginEthereum">
+			<h2>Please connect PassMe to your Ethereum Account (via MetaMask)</h2>
+		</div>
+
+		<div id="loginMasterPass">
+			<h2>Please enter your master password</h2>
+			<table>
+				<tr><td><input type="text" id="deriveMasterKeyPass"></td><td><input type="button" id="deriveMasterKeySubmit" value="Derive Master Key"></td></tr>
+			</table>
+		</div>
+
+		<div id="createContract">
+			<h2>Please enter the PassMe contract's address</h2>
+			<table><tr>
+				<td><input type="text" id="contractAddress"></td><td><input type="button" id="contractAddressSubmit" value="Create Contract"></td>
+			</tr></table>
+		</div>
+
+		<div id="addPass">
+			<h2>Save a Password</h2>
+			<table>
+				<tr><td>Metadata:</td><td><input type="number" id="addPassMetadata"></td></tr>
+				<tr><td>Site Url:</td><td><input type="text" id="addPassHref"></td></tr>
+				<tr><td>Site Pass:</td><td><input type="text" id="addPassPass"></td></tr>
+				<tr><td><input type="button" id="addPassSubmit" value="Submit"></td></tr>
+			</table>
+			<input type="button" id="showGetPass" class="navButton" value="Retrieve a Password">
+		</div>
+
+		<div id="getPass">
+			<h2>Retrieve a Password</h2>
+			<table>
+				<tr><td>URL:</td><td><input type="number" id="getPassHref"></td></tr>
+				<tr><td><input type="button" id="getPassSubmit" value="Submit"></td></tr>
+			</table>
+			<table>
+				<tr><td>Metadata:</td><td id="getPassMetadata"></td></tr>
+				<tr><td>Url:</td><td id="getPassHref"></td></tr>
+				<tr><td>Pass:</td><td id="getPassPass"></td></tr>
+			</table>
+
+			<input type="button" id="showAddPass" class="navButton" value="Save a Password">
+		</div>
+
+		<hr>
+		<h2>Status</h2>
+		<table>
+			<tr><td>Web3 Version: </td><td id="w3Version"></td></tr>
+			<tr><td>Pass Count: </td><td id="passCount"></td><td>	<input type="button" id="getPassCountSubmit" value="Update Pass Count"></td></tr>
+		</table>
+
+		<script type="text/javascript" src="main.js"></script> <!--get webpacked Web3 library-->
+		<script type="text/javascript" src="contract.js"></script> <!--get NoteChain smart contract interface-->
+		<script type="text/javascript" src="watcher.js"></script> <!--set up onclick events-->
+		<script type="text/javascript" src="crypt.js"></script> <!--encryption/decryption functions-->
+		<script type="text/javascript" src="index.js"></script> <!--initiates stuff-->
+
+	</body>
+</html>

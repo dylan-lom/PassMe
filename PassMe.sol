@@ -2,7 +2,7 @@ pragma solidity ^0.5.1;
 pragma experimental ABIEncoderV2; //required to return arrays of strings
 
 // PassMe, by Dylan Lom
-// v0.3
+// v0.3.1
 // Forked from NoteChain
 
 contract PassMe {
@@ -48,7 +48,13 @@ contract PassMe {
     }
 
     // FUNCTIONS
+    function setPassMeFee(uint _fee) external onlyOwner { //set the fee for using contract (in wei)
+        passMeFee = _fee;
+    }
 
+    function getPassMeFee() external view returns(uint) {
+        return passMeFee;
+    }
     // PASS RELATED
     // _PAYABLE_
     function addPass(uint16 _metadata, string calldata _href, string calldata _pass) external payable payFee {
@@ -71,13 +77,4 @@ contract PassMe {
         return ownerPasswds[msg.sender];
     }
 
-    function getPassVault() external view returns (Pass[] memory) {
-        Pass[] memory vault;
-        for (uint i=0; i < ownerPasswds[msg.sender].length; i++){
-            vault[i].metadata = passwds[ownerPasswds[msg.sender][i]].metadata;
-            vault[i].href = passwds[ownerPasswds[msg.sender][i]].href;
-            vault[i].pass = passwds[ownerPasswds[msg.sender][i]].pass;
-        }
-        return vault;
-    }
 }

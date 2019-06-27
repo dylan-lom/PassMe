@@ -41,7 +41,6 @@ window.HTElements = {
 		metadata: document.getElementById('getPassMetadata'),
 		href: document.getElementById('getPassHref'),
 		pass: document.getElementById('getPassPass'),
-		submit: document.getElementById('getPassSubmit'),
 
 		addPass: document.getElementById('getPass-showAddPass'),
 		getVault: document.getElementById('getPass-showGetVault')
@@ -79,21 +78,40 @@ window.initOnclick = function(){
 		window.deriveMasterKey(HTElements.deriveMasterKey.pass.value);
 		divGetVault(); //show add pass dialogue
 	};
-	HTElements.getPass.submit.onclick = function(){
-		window.getPass(HTElements.getPass.id.value);
-	};
+
 	HTElements.getPass.query.oninput = function(){
 		ret = window.search(HTElements.getPass.query.value);
 		table = document.createElement('table');
 		for (i=0; i<ret.length; i++){
 			row = table.insertRow(i);
 			url = row.insertCell(0);
+			toggle = row.insertCell(1);
+			pass = row.insertCell(2);
+
 			url.innerHTML = ret[i][1];
-			pass = row.insertCell(1);
-			pass.innerHTML = ret[i][2];
+			pass.innerHTML = '<input type="password" id="pass' + i +'">';
+			pass.value = ret[i][2];
+
+			toggle.innerHTML = '<input type="button" value="Show" id="">';
+			let f = function(){
+				let pass = document.getElementById(pass.id);
+				let butt = document.getElementById(toggle.id);
+
+				if (pass.type == "text"){
+					pass.type = "password";
+					butt.value = "Show";
+				} else {
+					pass.type = "text";
+					butt.value = "Hide";
+				}
+			}
+
+			toggle.onclick = f;
+
 		}
-		HTElements.getPass.results.parentNode.replaceChild(table, HTElements.getPass.results);
-		console.log(ret)
+		HTElements.getPass.results.replaceWith(table); //replace in DOM
+		HTElements.getPass.results = table; //replace in HTElements array (for internal use)
+		//console.log(ret)
 	}
 
 	HTElements.getPassCount.submit.onclick = function(){

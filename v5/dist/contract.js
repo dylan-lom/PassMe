@@ -161,17 +161,6 @@ window.getPassCount = function(){
 	window.contract.methods.getPassCount().call().then(function(r){HTElements.getPassCount.count.innerHTML = window._web3.utils.hexToNumber(r);});
 }
 
-/* legacy (v0.4-) function
-window.getPass = function(_id){
-	window.contract.methods.getPass(_id).call().then(function(r){
-		console.log(r);
-		console.log(r[1]+'\n'+r[2]);
-		HTElements.getPass.metadata.innerHTML = r[0];
-		HTElements.getPass.href.innerHTML = decrypt(r[1], masterKey);
-		HTElements.getPass.pass.innerHTML = decrypt(r[2], masterKey);
-	});
-}
-*/
 window.getPass = function(query)
 {
 	res = search(query);

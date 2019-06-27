@@ -172,6 +172,9 @@ window.getPass = function(_id){
 }
 
 window.getVault = function(c){ //if c is true, display the next screen (add pass)
+	if (_web3.defaultAccount == undefined){
+		ethEnable();
+	}
 	window.contract.methods.getPasswds.call().then(function(_passwds){
 		//getPasswds returns an array of password id
 		console.log('_passwds: '+ _passwds)
@@ -183,20 +186,10 @@ window.getVault = function(c){ //if c is true, display the next screen (add pass
 			window.contract.methods.getPass(_id).call().then(function(_pass){
 				_pass[1] = decrypt(_pass[1], window.masterKey);
 				_pass[2] = decrypt(_pass[2], window.masterKey);
-				//vault.push(_pass);
-				vault[vault.length] = _pass;
+				vault.push(_pass);
 			});
 		}
-		nvault = vault;
-		//sort the vault array based on the url
-		nvault.sort(function(a,b){
-			if (a[1] < b[1])
-				return -1;
-			if (a[1] > b[1])
-				return 1;
-			return 0; //else, they are equal
-		});
-		console.log(nvault);
+		window.vault = vault;
 
 		if (c) {
 			divAddPass();
@@ -206,4 +199,16 @@ window.getVault = function(c){ //if c is true, display the next screen (add pass
 
 window.getWeb3Version = function(){
 	HTElements.web3Version.innerHTML = window._web3.version;
+}
+
+window.ethEnable = async function(){
+	window.ethereum.enable().then(
+    function() {
+      _web3.eth.defaultAccount = web3.eth.accounts[0]
+      console.log('Using account: '+_web3.eth.defaultAccount);
+
+      _web3.eth.getBlock(0).then(function(block){ //get the genesis block, from which we can get the gas limit
+      	_web3.defaultGas = block.gasLimit;
+			});
+    });
 }

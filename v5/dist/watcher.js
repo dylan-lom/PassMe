@@ -11,7 +11,9 @@ window.HTElements = {
 		metadata: document.getElementById('addPassMetadata'),
 		href: document.getElementById('addPassHref'),
 		pass: document.getElementById('addPassPass'),
-		submit: document.getElementById('addPassSubmit')
+		submit: document.getElementById('addPassSubmit'),
+
+		getVault: document.getElementById('addPass-showGetVault')
 	},
 
 	createContract: {
@@ -33,11 +35,13 @@ window.HTElements = {
 
 	getPass: {
 		div: document.getElementById('getPass'),
-		url: document.getElementById('getPassUrl'),
+		query: document.getElementById('getPassQuery'),
 		metadata: document.getElementById('getPassMetadata'),
 		href: document.getElementById('getPassHref'),
 		pass: document.getElementById('getPassPass'),
-		submit: document.getElementById('getPassSubmit')
+		submit: document.getElementById('getPassSubmit'),
+
+		getVault: document.getElementById('getPass-showGetVault')
 	},
 
 	getVault: {
@@ -77,6 +81,11 @@ window.initOnclick = function(){
 	HTElements.getPassCount.submit.onclick = function(){
 		window.getPassCount();
 	};
+
+	HTElements.addPass.getVault.onclick = function(){
+		window.divGetVault();
+	};
+	HTElements.getPass.getVault.onclick = HTElements.addPass.getVault.onclick;
 }
 
 window.divVisibility = function(mode){

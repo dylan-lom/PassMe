@@ -79,11 +79,11 @@ The Master-Key derivation process is as follows:
 
 For PassMe, this translates into:
 
-> Master-Key = PBKDF2(SHA-512, Master Password, Account, 1000, 256)
+> Master-Key = PBKDF2(SHA-512, Master Password, Account, 100, 256)
 
 Which produces a 256 bit key, appropriate for use in the AES256 encryption process used to encrypt passwords.
 
-This master-key derivation process actually runs 100 times before the final key is determined (100,000 passes in total)
+This master-key derivation process actually runs 100 additional times before the final key is determined (10,000 passes in total)
 
 <h3 id="3.2">3.2 AES-256-CBC Password Encryption</h3>
 

@@ -13,7 +13,8 @@ window.HTElements = {
 		pass: document.getElementById('addPassPass'),
 		submit: document.getElementById('addPassSubmit'),
 
-		getVault: document.getElementById('addPass-showGetVault')
+		getVault: document.getElementById('addPass-showGetVault'),
+		getPass: document.getElementById('addPass-showGetPass')
 	},
 
 	createContract: {
@@ -42,6 +43,7 @@ window.HTElements = {
 		pass: document.getElementById('getPassPass'),
 		submit: document.getElementById('getPassSubmit'),
 
+		addPass: document.getElementById('getPass-showAddPass'),
 		getVault: document.getElementById('getPass-showGetVault')
 	},
 
@@ -68,6 +70,7 @@ window.initOnclick = function(){
 	HTElements.addPass.submit.onclick = function(){
 		window.addPass(HTElements.addPass.metadata.value, HTElements.addPass.href.value, HTElements.addPass.pass.value);
 	};
+
 	HTElements.createContract.submit.onclick = function(){
 		createContract(HTElements.createContract.address.value);
 		divDeriveMasterKey();
@@ -81,7 +84,7 @@ window.initOnclick = function(){
 	};
 	HTElements.getPass.query.oninput = function(){
 		ret = window.search(HTElements.getPass.query.value);
-		table = document.createElement('tr');
+		table = document.createElement('table');
 		for (i=0; i<ret.length; i++){
 			row = table.insertRow(i);
 			url = row.insertCell(0);
@@ -101,6 +104,10 @@ window.initOnclick = function(){
 		window.divGetVault();
 	};
 	HTElements.getPass.getVault.onclick = HTElements.addPass.getVault.onclick;
+
+	//nav buttons
+	HTElements.addPass.getPass.onclick = divGetPass;
+	HTElements.getPass.addPass.onclick = divAddPass;
 }
 
 window.divVisibility = function(mode){

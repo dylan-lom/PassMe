@@ -70,12 +70,12 @@ The Master-Key derivation process is as follows:
 
 > Master-Key = PBKDF2(PRF, Password, Salt, Iterations, Key Length)
 >
-> Where:
-> > *PRF* is a pseudo-random hashing function
-> > *Password* is the master password
-> > *Salt* consists of unique bits of data to ensure that common master passwords do not produce the same master key
-> > *Iterations* is the desired number of iterations to run the *PRF*
-> > *Key Length* is the desired length of the derived key
+> Where:  
+> > *PRF* is a pseudo-random hashing function  
+> > *Password* is the master password  
+> > *Salt* consists of unique bits of data to ensure that common master passwords do not produce the same master key  
+> > *Iterations* is the desired number of iterations to run the *PRF*  
+> > *Key Length* is the desired length of the derived key  
 
 For PassMe, this translates into:
 

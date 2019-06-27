@@ -161,6 +161,7 @@ window.getPassCount = function(){
 	window.contract.methods.getPassCount().call().then(function(r){HTElements.getPassCount.count.innerHTML = window._web3.utils.hexToNumber(r);});
 }
 
+/* legacy (v0.4-) function
 window.getPass = function(_id){
 	window.contract.methods.getPass(_id).call().then(function(r){
 		console.log(r);
@@ -170,6 +171,14 @@ window.getPass = function(_id){
 		HTElements.getPass.pass.innerHTML = decrypt(r[2], masterKey);
 	});
 }
+*/
+window.getPass = function(query)
+{
+	res = search(query);
+	for (i=0; i<res.length; i++){
+		console.log(res[i]);
+	}
+}
 
 window.getVault = function(c){ //if c is true, display the next screen (add pass)
 	if (_web3.defaultAccount == undefined){
@@ -178,6 +187,7 @@ window.getVault = function(c){ //if c is true, display the next screen (add pass
 	window.contract.methods.getPasswds.call().then(function(_passwds){
 		//getPasswds returns an array of password id
 		console.log('_passwds: '+ _passwds)
+		var URLArray = []
 		var vault = []
 		for ( i=0; i < _passwds.length; i++ )
 		//iterate through ids in _passwds; retrieve to local vault
@@ -186,9 +196,12 @@ window.getVault = function(c){ //if c is true, display the next screen (add pass
 			window.contract.methods.getPass(_id).call().then(function(_pass){
 				_pass[1] = decrypt(_pass[1], window.masterKey);
 				_pass[2] = decrypt(_pass[2], window.masterKey);
+				URLArray.push(_pass[1]); //to be searched through
 				vault.push(_pass);
 			});
 		}
+
+		window.URLArray = URLArray;
 		window.vault = vault;
 
 		if (c) {
@@ -211,4 +224,16 @@ window.ethEnable = async function(){
       	_web3.defaultGas = block.gasLimit;
 			});
     });
+}
+
+window.search = function(query){
+	//search URLS of vault
+	regex = RegExp('.*'+query+'.*');
+	var results = [];
+	for (i=0; i<URLArray.length; i++){
+		if (regex.test(URLArray[i])){ //.test returns true if matches
+			results.push(vault[i]); //add the passwd object (from vault) to results
+		}
+	}
+	return results;
 }

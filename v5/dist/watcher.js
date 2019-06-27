@@ -36,6 +36,7 @@ window.HTElements = {
 	getPass: {
 		div: document.getElementById('getPass'),
 		query: document.getElementById('getPassQuery'),
+		results: document.getElementById('getPassResults'), //table
 		metadata: document.getElementById('getPassMetadata'),
 		href: document.getElementById('getPassHref'),
 		pass: document.getElementById('getPassPass'),
@@ -78,6 +79,20 @@ window.initOnclick = function(){
 	HTElements.getPass.submit.onclick = function(){
 		window.getPass(HTElements.getPass.id.value);
 	};
+	HTElements.getPass.query.oninput = function(){
+		ret = window.search(HTElements.getPass.query.value);
+		table = document.createElement('tr');
+		for (i=0; i<ret.length; i++){
+			row = table.insertRow(i);
+			url = row.insertCell(0);
+			url.innerHTML = ret[i][1];
+			pass = row.insertCell(1);
+			pass.innerHTML = ret[i][2];
+		}
+		HTElements.getPass.results.parentNode.replaceChild(table, HTElements.getPass.results);
+		console.log(ret)
+	}
+
 	HTElements.getPassCount.submit.onclick = function(){
 		window.getPassCount();
 	};

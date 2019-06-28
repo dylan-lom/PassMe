@@ -89,23 +89,16 @@ window.initOnclick = function(){
 			pass = row.insertCell(2);
 
 			url.innerHTML = ret[i][1];
-			pass.innerHTML = '<input type="password" id="pass' + i +'">';
-			pass.value = ret[i][2];
+			pass.innerHTML = '<p id="pass'+i.toString()+'">'+ret[i][2]+'</p>';
 
-			toggle.innerHTML = '<input type="button" value="Show" id="">';
+			toggle.innerHTML = '<input type="image" src="hide.svg" alt="hide">';
+			toggle.id = 'togg'+i.toString();
 			let f = function(){
-				let pass = document.getElementById(pass.id);
-				let butt = document.getElementById(toggle.id);
-
-				if (pass.type == "text"){
-					pass.type = "password";
-					butt.value = "Show";
-				} else {
-					pass.type = "text";
-					butt.value = "Hide";
-				}
+				console.log('hide!!');
+				var id = 'pass'+i.toString();
+				console.log('hiding '+id);
+				document.getElementById(id).style.display = hidden;
 			}
-
 			toggle.onclick = f;
 
 		}

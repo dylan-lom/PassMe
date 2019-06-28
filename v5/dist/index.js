@@ -22,14 +22,26 @@ function divLoginEthereum()
     }
   }
   window._web3 = new Web3(web3.currentProvider); //set _web3 to provider used by MetaMask
-  ethEnable();
-  window.getWeb3Version(); //populate Web3 version
-  divCreateContract(); //show deriveMasterKey dialogue
+  window.ethereum.enable().then(
+    function() {
+      _web3.eth.defaultAccount = web3.eth.accounts[0]
+      console.log('Using account: '+_web3.eth.defaultAccount);
+
+      _web3.eth.getBlock(0).then(function(block){ //get the genesis block, from which we can get the gas limit
+      	_web3.defaultGas = block.gasLimit;
+			});
+      window.getWeb3Version(); //populate Web3 version
+      divCreateContract(); //show deriveMasterKey dialogue
+    });
+
 }
 
 function divCreateContract()
 {
   //dialogue to create contract object
+  if (_web3.eth.defaultAccount == "" || typeof(_web3.eth.defaultAccount) == "undefined"){
+    divLoginEthereum();
+  }
   window.divVisibility(hidden);
   HTElements.createContract.div.style.display = visible;
 }
@@ -37,6 +49,9 @@ function divCreateContract()
 function divDeriveMasterKey()
 {
   //dialogue to derive master key from master pass
+  if (_web3.eth.defaultAccount == "" || typeof(_web3.eth.defaultAccount) == "undefined"){
+    divLoginEthereum();
+  }
   window.divVisibility(hidden);
   HTElements.deriveMasterKey.div.style.display = visible;
 }

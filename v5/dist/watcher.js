@@ -85,21 +85,10 @@ window.initOnclick = function(){
 		for (i=0; i<ret.length; i++){
 			row = table.insertRow(i);
 			url = row.insertCell(0);
-			toggle = row.insertCell(1);
-			pass = row.insertCell(2);
+			pass = row.insertCell(1);
 
 			url.innerHTML = ret[i][1];
-			pass.innerHTML = '<p id="pass'+i.toString()+'">'+ret[i][2]+'</p>';
-
-			toggle.innerHTML = '<input type="image" src="hide.svg" alt="hide">';
-			toggle.id = 'togg'+i.toString();
-			let f = function(){
-				console.log('hide!!');
-				var id = 'pass'+i.toString();
-				console.log('hiding '+id);
-				document.getElementById(id).style.display = hidden;
-			}
-			toggle.onclick = f;
+			pass.innerHTML = ret[i][2];
 
 		}
 		HTElements.getPass.results.replaceWith(table); //replace in DOM

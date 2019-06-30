@@ -2,7 +2,7 @@ pragma solidity ^0.5.1;
 pragma experimental ABIEncoderV2; //required to return arrays of strings
 
 // PassMe, by Dylan Lom
-// v0.3.5
+// v0.3.55
 // Forked from NoteChain
 
 contract PassMe {
@@ -30,8 +30,12 @@ contract PassMe {
     mapping (address => uint64[]) private ownerPasswds;
 
     // MODIFIERS
-    modifier noPasswds() {
-        require(ownerPasswds[msg.sender].length < 1);
+    modifier initialised() {
+        require(ownerPasswds[msg.sender].length > 1);
+        _;
+    }
+    modifier notInitialised() {
+        require(ownerPasswds[msg.sender].length < 2);
         _;
     }
     modifier notDeleted(uint64 _passId) {
@@ -61,7 +65,7 @@ contract PassMe {
 
     // FUNCTIONS
 
-    function addFirstPass() external noPasswds { //this stops issues with accessing notes
+    function addFirstPass() external notInitialised { //this stops issues with accessing notes
         uint64 id = uint64(passwds.push(Pass(1, "", "")));
         passToOwner[id] = msg.sender;
         ownerPasswds[msg.sender].push(id);
@@ -80,7 +84,7 @@ contract PassMe {
     }
     // PASS RELATED
     // _PAYABLE_
-    function addPass(uint16 _metadata, string calldata _href, string calldata _pass) external payable payFee {
+    function addPass(uint16 _metadata, string calldata _href, string calldata _pass) external initialised payable payFee {
         uint64 id = uint64(passwds.push(Pass(_metadata, _href, _pass)));
         passToOwner[id] = msg.sender;
         ownerPasswds[msg.sender].push(id);

@@ -1,0 +1,33 @@
+body {
+  padding: 2rem;
+  line-height: 40px;
+  max-width: 80%;
+  font-family: Verdana, Geneva, sans-serif;
+  margin: auto;
+  width: 50%;
+  text-align: center;
+}
+
+table {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: left;
+  border-collapse: collapse;
+  border-width: 3px;
+}
+
+td {
+  padding: 15px;
+}
+
+input[type=image] {
+  margin-right: 25%;
+  margin-left: 25%;
+  margin-top: 25%;
+  margin-bottom: 25%;
+}
+.navButton {
+  border:none;
+  border-radius: 3px;
+  background: lightgrey;
+}

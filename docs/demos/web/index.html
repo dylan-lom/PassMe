@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+
+<html lang="en">
+	<head>
+		<meta charset=UTF-8>
+		<title>PassMe</title>
+		<link rel="stylesheet" type="text/css" href="style.css">
+	</head>
+
+	<body>
+		<h1>PassMe</h1>
+
+		<div id="noEth">
+			<h2>Sorry!</h2>
+			<p>Please install <a href="https://metamask.io/">MetaMask</a> to use PassMe</p>
+		</div>
+
+		<div id="loginEthereum">
+			<h2>Please connect PassMe to your Ethereum Account (via MetaMask)</h2>
+		</div>
+
+		<div id="createContract">
+			<h2>Please enter the PassMe contract's address</h2>
+			<table><tr>
+				<td><input type="text" id="contractAddress"></td><td><input type="button" id="contractAddressSubmit" value="Create Contract"></td>
+			</tr></table>
+		</div>
+
+		<div id="deriveMasterKey">
+			<h2>Please enter your master password</h2>
+			<table>
+				<tr><td><input type="password" id="deriveMasterKeyPass"></td><td><input type="button" id="deriveMasterKeySubmit" value="Derive Master Key"></td></tr>
+			</table>
+		</div>
+
+		<div id="getVault">
+			<h2>Please wait...</h2>
+			<p>Currently retrieving password vault...</p>
+		</div>
+
+		<div id="addFirstPass">
+			<h2>Please confirm transaction in MetaMask</h2>
+			<p>To initialise your vault, please confirm the transaction</p>
+		</div>
+
+		<div id="addPass">
+			<h2>Save a Password</h2>
+			<table>
+				<tr><td>Site Url:</td><td><input type="text" id="addPassHref"></td></tr>
+				<tr><td>Site Pass:</td><td><input type="password" id="addPassPass"></td></tr>
+				<tr><td><input type="button" id="addPassSubmit" value="Submit"></td></tr>
+			</table>
+			<input type="button" id="addPass-showGetPass" class="navButton" value="Retrieve a Password">
+			<input type="button" id="addPass-showGetVault" class="navButton" value="Update vault">
+		</div>
+
+		<div id="getPass">
+			<h2>Retrieve a Password</h2>
+			<table>
+				<tr><td>URL:</td><td><input type="text" id="getPassQuery"></td></tr>
+			</table>
+			<table id="getPassResults">
+			</table>
+
+			<input type="button" id="getPass-showAddPass" class="navButton" value="Save a Password">
+			<input type="button" id="getPass-showGetVault" class="navButton" value="Update vault">
+
+		</div>
+
+		<div id="status" hidden>
+		<hr>
+		<h2>Status</h2>
+		<table>
+			<tr><td>Web3 Version: </td><td id="w3Version"></td></tr>
+			<tr><td>Pass Count: </td><td id="passCount"></td><td>	<input type="button" id="getPassCountSubmit" value="Update Pass Count"></td></tr>
+		</table>
+		</div>
+
+		<script type="text/javascript" src="main.js"></script> <!--get webpacked Web3 library-->
+		<script type="text/javascript" src="contract.js"></script> <!--get NoteChain smart contract interface-->
+		<script type="text/javascript" src="watcher.js"></script> <!--set up onclick events-->
+		<script type="text/javascript" src="crypt.js"></script> <!--encryption/decryption functions-->
+		<script type="text/javascript" src="index.js"></script> <!--initiates stuff-->
+
+	</body>
+</html>

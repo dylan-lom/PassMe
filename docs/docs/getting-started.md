@@ -17,8 +17,9 @@ To use the Beta release of PassMe, you'll need the [MetaMask][metamask] extensio
 
 4. Access the [Kovan Faucet][faucet], to redeem 1ETH for your account.
 
-5. Access the [PassMe webapp][passme], when prompted for the 'contract address', copy-paste this value, which is where the
-   PassMe contract is deployed on Kovan.
+5. Access the [PassMe webapp][passme], when prompted for the 'contract address', copy-paste the value below (begginig with a 0x),
+   which is where the PassMe smart contract is deployed on the Kovan network.
+  
 
 	> 0x987a526b64f5b415f5382c692bcf7c566cc24493
 

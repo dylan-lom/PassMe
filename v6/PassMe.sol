@@ -2,7 +2,7 @@ pragma solidity ^0.5.1;
 pragma experimental ABIEncoderV2; //required to return arrays of strings
 
 // PassMe, by Dylan Lom
-// v0.3.2
+// v0.3.5
 // Forked from NoteChain
 
 contract PassMe {
@@ -24,11 +24,16 @@ contract PassMe {
     // array of saved passwords
     Pass[] private passwds;
 
+
     //to determine who owns which passwords
     mapping (uint64 => address) private passToOwner; //asocciate password with address that created it
     mapping (address => uint64[]) private ownerPasswds;
 
     // MODIFIERS
+    modifier noPasswds() {
+        require(ownerPasswds[msg.sender].length < 1);
+        _;
+    }
     modifier notDeleted(uint64 _passId) {
         require(uint8(passwds[_passId].metadata) != Deleted);
         _;
@@ -55,6 +60,17 @@ contract PassMe {
     }
 
     // FUNCTIONS
+
+    function addFirstPass() external noPasswds { //this stops issues with accessing notes
+        uint64 id = uint64(passwds.push(Pass(1, "", "")));
+        passToOwner[id] = msg.sender;
+        ownerPasswds[msg.sender].push(id);
+        id = uint64(passwds.push(Pass(1, "", "")));
+        passToOwner[id] = msg.sender;
+        ownerPasswds[msg.sender].push(id);
+        emit PassAdded(id);
+    }
+
     function setPassMeFee(uint _fee) external onlyOwner { //set the fee for using contract (in wei)
         passMeFee = _fee;
     }
@@ -80,7 +96,7 @@ contract PassMe {
         return uint64(passwds.length);
     }
 
-    function getPass(uint64 _passId) external view returns (uint16, string memory, string memory) {
+    function getPass(uint64 _passId) external view onlyOwnerOf(_passId) notDeleted(_passId) returns (uint16, string memory, string memory) {
         return (passwds[_passId].metadata, passwds[_passId].href, passwds[_passId].pass);
     }
 

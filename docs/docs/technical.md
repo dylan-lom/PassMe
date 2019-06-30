@@ -7,7 +7,7 @@ Technical Documentation
 [2 PassMe Smart Contract](#2)  
 [2.1 Local Encryption](#2.1)  
 [3 Password Hashing Process](#3)  
-[3.1 PBKDF2 Master-Key Derivation](#3.1)
+[3.1 PBKDF2 Master-Key Derivation](#3.1)  
 [3.2 AES-256-CBC Password Encryption](#3.2)
 
 <hr>
@@ -70,27 +70,28 @@ The Master-Key derivation process is as follows:
 
 > Master-Key = PBKDF2(PRF, Password, Salt, Iterations, Key Length)
 >
-> Where:
-> > *PRF* is a pseudo-random hashing function
-> > *Password* is the master password
-> > *Salt* consists of unique bits of data to ensure that common master passwords do not produce the same master key
-> > *Iterations* is the desired number of iterations to run the *PRF*
-> > *Key Length* is the desired length of the derived key
+> Where:  
+> > *PRF* is a pseudo-random hashing function  
+> > *Password* is the master password  
+> > *Salt* consists of unique bits of data to ensure that common master passwords do not produce the same master key  
+> > *Iterations* is the desired number of iterations to run the *PRF*  
+> > *Key Length* is the desired length of the derived key  
 
 For PassMe, this translates into:
 
-> Master-Key = PBKDF2(SHA-512, Master Password, Account, 1000, 256)
+> Master-Key = PBKDF2(SHA-512, Master Password, Account, 100, 256)
 
 Which produces a 256 bit key, appropriate for use in the AES256 encryption process used to encrypt passwords.
 
-This master-key derivation process actually runs 100 times before the final key is determined (100,000 passes in total)
+This master-key derivation process actually runs 100 additional times before the final key is determined (10,000 passes in total)
 
 <h3 id="3.2">3.2 AES-256-CBC Password Encryption</h3>
 
 To encrypt passwords PassMe uses the NodeJS crypto library, which in turn depends on the system SSL library.
 
-Due to storage limitations on the Solidity blockchain, combined with the AES-256 encryption method's dependence on
- some amount of padding being appended to the cipher text, password length is limited to a maximum of *31 ascii characters*.
+PassMe uses Solidity's 'string' data type to store data of any size, however longer passwords will increase the [gas](https://www.ethos.io/what-is-ethereum-gas/) required, and it is technically possible to "gas out" the contract, if the gas required exceeds the maximum gas on the network.
+
+This is unlikely, however, as the mainnet's gas limit is [quite high](https://etherscan.io/chart/gaslimit)
 
 The AES Encryption process:
 

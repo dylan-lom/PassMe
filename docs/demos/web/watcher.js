@@ -110,7 +110,6 @@ window.initOnclick = function(){
 				button.alt = "Delete";
 				button.passId = ret[i][3]
 				button.onclick = function(){
-					console.log(button.passId);
 					contract.methods.deletePass(button.passId).send({value: contractVal});
 				};
 			del.replaceWith(button);

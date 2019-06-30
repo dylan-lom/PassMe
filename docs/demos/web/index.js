@@ -68,9 +68,7 @@ function divAddFirstPass()
   //to initialise user's account
   window.divVisibility(hidden);
   HTElements.addFirstPass.div.style.display = visible;
-  window.contract.methods.addFirstPass.send().then(function(){
-    return 2;
-  });
+  window.contract.methods.addFirstPass.send();
 }
 function divAddPass()
 {

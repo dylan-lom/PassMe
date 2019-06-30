@@ -34,7 +34,6 @@ window.getVault = function(c){ //if c is true, display the next screen (add pass
 		//getPasswds returns an array of password id
 		console.log('_passwds: '+ _passwds);
 		if (_passwds.length < 2){
-			console.log('!');
 			divAddFirstPass();
 		}
 		var URLArray = [];
@@ -64,7 +63,6 @@ window.getVault = function(c){ //if c is true, display the next screen (add pass
 		HTElements.getPass.results.replaceWith(_table);
 		HTElements.getPass.results = _table;
 
-		console.log('!');
 		if (c==1) {
 			divGetPass();
 		} else if (c==2) {

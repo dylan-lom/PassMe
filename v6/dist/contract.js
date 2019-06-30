@@ -34,7 +34,6 @@ window.getVault = function(c){ //if c is true, display the next screen (add pass
 		//getPasswds returns an array of password id
 		console.log('_passwds: '+ _passwds);
 		if (_passwds.length < 2){
-			console.log('!');
 			divAddFirstPass();
 		}
 		var URLArray = [];
@@ -44,9 +43,6 @@ window.getVault = function(c){ //if c is true, display the next screen (add pass
 		{
 			let _id = window._web3.utils.hexToNumber(_passwds[i]) -1; //for some reason the value the contract gives is +1 :/
 			window.contract.methods.getPass(_id).call().then(function(_pass){
-				if (_web3.utils.hexToNumber(_pass[0]) == passDeleted){
-					return; //this pass has been marked as deleted
-				}
 				_pass[1] = decrypt(_pass[1], window.masterKey);
 				_pass[2] = decrypt(_pass[2], window.masterKey);
 
@@ -64,7 +60,6 @@ window.getVault = function(c){ //if c is true, display the next screen (add pass
 		HTElements.getPass.results.replaceWith(_table);
 		HTElements.getPass.results = _table;
 
-		console.log('!');
 		if (c==1) {
 			divGetPass();
 		} else if (c==2) {

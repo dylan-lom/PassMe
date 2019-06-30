@@ -92,28 +92,50 @@ window.initOnclick = function(){
 		del = document.createElement('th');
 		url.innerHTML = "Site";
 		pass.innerHTML = "Password";
-		del.innerHTML = "Delete";
+		del.innerHTML = "Actions";
 		row.appendChild(url); row.appendChild(pass); row.appendChild(del);
 
 
 		for (i=0; i<ret.length; i++){
 			row = table.insertRow(-1);
+
 			url = row.insertCell(0);
 			pass = row.insertCell(1);
-			del = row.insertCell(2);
+			vis = row.insertCell(2);
+			del = row.insertCell(3);
 
-			url.innerHTML = ret[i][1];
-			pass.innerHTML = ret[i][2];
-			let button = document.createElement('input');
-				button.type = "image";
-				button.src = "delete.svg";
-				button.alt = "Delete";
-				button.passId = ret[i][3]
-				button.onclick = function(){
-					console.log(button.passId);
-					contract.methods.deletePass(button.passId).send({value: contractVal});
+			url.innerHTML = '<a href="'+ret[i][1]+'">'+ret[i][1]+'</a>';
+
+			// CREATING THE VISIBILITY BUTTON
+			let visButton = document.createElement('input');
+				visButton.type = "image";
+				visButton.src = "show.svg";
+				visButton.alt = "Show Password";
+				visButton.passId = ret[i][3];
+				visButton.pass = ret[i][2]; //stores password text for when it's 'hidden'
+				visButton.onclick = function(){
+					if (visButton.src.substring(visButton.src.lastIndexOf('/')+1) == "show.svg"){
+						visButton.src = "hide.svg";
+						console.log('pass'+visButton.passId);
+						document.getElementById('pass'+visButton.passId).textContent = visButton.pass;
+					} else {
+						visButton.src = "show.svg";
+						document.getElementById('pass'+visButton.passId).textContent = "*".repeat(visButton.pass.length);
+					}
+				}
+			vis.replaceWith(visButton);
+
+			let delButton = document.createElement('input');
+				delButton.type = "image";
+				delButton.src = "delete.svg";
+				delButton.alt = "Delete";
+				delButton.passId = ret[i][3];
+				delButton.onclick = function(){
+					contract.methods.deletePass(delButton.passId).send({value: contractVal});
 				};
-			del.replaceWith(button);
+			del.replaceWith(delButton);
+
+			pass.innerHTML = '<p id="pass'+delButton.passId+'">'+'*'.repeat(ret[i][2].length);
 		}
 		HTElements.getPass.results.replaceWith(table); //replace in DOM
 		HTElements.getPass.results = table; //replace in HTElements array (for internal use)

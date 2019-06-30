@@ -16,7 +16,7 @@ table {
   border-width: 3px;
 }
 
-td {
+td, th {
   padding: 15px;
 }
 

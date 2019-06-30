@@ -63,7 +63,15 @@ function divGetVault()
   HTElements.getVault.div.style.display = visible;
   window.getVault(1); //passing 1 makes the function continue to the next display
 }
-
+function divAddFirstPass()
+{
+  //to initialise user's account
+  window.divVisibility(hidden);
+  HTElements.addFirstPass.div.style.display = visible;
+  window.contract.methods.addFirstPass.send().then(function(){
+    return 2;
+  });
+}
 function divAddPass()
 {
   //dialogue to save a passwword

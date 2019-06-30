@@ -2,15 +2,14 @@ pragma solidity ^0.5.1;
 pragma experimental ABIEncoderV2; //required to return arrays of strings
 
 // PassMe, by Dylan Lom
-// v0.3.5
+// v0.3.2
 // Forked from NoteChain
 
 contract PassMe {
     // EVENTS
     event PassAdded(uint64 id); // used to trigger events in Web3
 
-    // CONSTANTS
-    uint8 constant Deleted = 1; // if deleted, set metadata = 0;
+    uint8 constant Deleted = 1;
 
     address public owner;
     uint passMeFee = 0.0002 ether;
@@ -25,14 +24,14 @@ contract PassMe {
     // array of saved passwords
     Pass[] private passwds;
 
-    //not sure
+    //to determine who owns which passwords
     mapping (uint64 => address) private passToOwner; //asocciate password with address that created it
     mapping (address => uint64[]) private ownerPasswds;
 
     // MODIFIERS
     modifier notDeleted(uint64 _passId) {
-      require(uint8(passwds[_passId].metadata) != Deleted);
-      _;
+        require(uint8(passwds[_passId].metadata) != Deleted);
+        _;
     }
 
     modifier onlyOwner() { // only owner (of contract?)

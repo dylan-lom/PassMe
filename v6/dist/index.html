@@ -38,6 +38,11 @@
 			<p>Currently retrieving password vault...</p>
 		</div>
 
+		<div id="addFirstPass">
+			<h2>Please confirm transaction in MetaMask</h2>
+			<p>To initialise your vault, please confirm the transaction</p>
+		</div>
+
 		<div id="addPass">
 			<h2>Save a Password</h2>
 			<table>
@@ -62,12 +67,14 @@
 
 		</div>
 
+		<div id="status" hidden>
 		<hr>
 		<h2>Status</h2>
 		<table>
 			<tr><td>Web3 Version: </td><td id="w3Version"></td></tr>
 			<tr><td>Pass Count: </td><td id="passCount"></td><td>	<input type="button" id="getPassCountSubmit" value="Update Pass Count"></td></tr>
 		</table>
+		</div>
 
 		<script type="text/javascript" src="main.js"></script> <!--get webpacked Web3 library-->
 		<script type="text/javascript" src="contract.js"></script> <!--get NoteChain smart contract interface-->

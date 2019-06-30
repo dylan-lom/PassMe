@@ -16,6 +16,10 @@ window.HTElements = {
 		getPass: document.getElementById('addPass-showGetPass')
 	},
 
+	addFirstPass: {
+		div: document.getElementById('addFirstPass')
+	},
+
 	createContract: {
 		div: document.getElementById('createContract'),
 		address: document.getElementById('contractAddress'),
@@ -81,14 +85,35 @@ window.initOnclick = function(){
 	HTElements.getPass.query.oninput = function(){
 		ret = window.search(HTElements.getPass.query.value);
 		table = document.createElement('table');
+		table.border = "1";
+		row = table.insertRow(-1);
+		url = document.createElement('th');
+		pass = document.createElement('th');
+		del = document.createElement('th');
+		url.innerHTML = "Site";
+		pass.innerHTML = "Password";
+		del.innerHTML = "Delete";
+		row.appendChild(url); row.appendChild(pass); row.appendChild(del);
+
+
 		for (i=0; i<ret.length; i++){
-			row = table.insertRow(i);
+			row = table.insertRow(-1);
 			url = row.insertCell(0);
 			pass = row.insertCell(1);
+			del = row.insertCell(2);
 
 			url.innerHTML = ret[i][1];
 			pass.innerHTML = ret[i][2];
-
+			let button = document.createElement('input');
+				button.type = "image";
+				button.src = "delete.svg";
+				button.alt = "Delete";
+				button.passId = ret[i][3]
+				button.onclick = function(){
+					console.log(button.passId);
+					contract.methods.deletePass(button.passId).send({value: contractVal});
+				};
+			del.replaceWith(button);
 		}
 		HTElements.getPass.results.replaceWith(table); //replace in DOM
 		HTElements.getPass.results = table; //replace in HTElements array (for internal use)
@@ -111,6 +136,7 @@ window.initOnclick = function(){
 
 window.divVisibility = function(mode){
 	HTElements.addPass.div.style.display = mode;
+	HTElements.addFirstPass.div.style.display = mode;
 	HTElements.createContract.div.style.display = mode;
 	HTElements.deriveMasterKey.div.style.display = mode;
 	HTElements.getPass.div.style.display = mode;

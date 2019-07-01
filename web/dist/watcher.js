@@ -116,7 +116,7 @@ window.initOnclick = function(){
 				visButton.onclick = function(){
 					if (visButton.src.substring(visButton.src.lastIndexOf('/')+1) == "show.svg"){
 						visButton.src = "hide.svg";
-						console.log('pass'+visButton.passId);
+						//console.log('pass'+visButton.passId);
 						document.getElementById('pass'+visButton.passId).textContent = visButton.pass;
 					} else {
 						visButton.src = "show.svg";
@@ -139,7 +139,8 @@ window.initOnclick = function(){
 		}
 		HTElements.getPass.results.replaceWith(table); //replace in DOM
 		HTElements.getPass.results = table; //replace in HTElements array (for internal use)
-		//console.log(ret)
+		//
+		(ret)
 	}
 
 	HTElements.getPassCount.submit.onclick = function(){

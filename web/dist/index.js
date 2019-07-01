@@ -25,7 +25,7 @@ function divLoginEthereum()
   window.ethereum.enable().then(
     function() {
       _web3.eth.defaultAccount = web3.eth.accounts[0]
-      console.log('Using account: '+_web3.eth.defaultAccount);
+      //console.log('Using account: '+_web3.eth.defaultAccount);
 
       _web3.eth.getBlock(0).then(function(block){ //get the genesis block, from which we can get the gas limit
       	_web3.defaultGas = block.gasLimit;

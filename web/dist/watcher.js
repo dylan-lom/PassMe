@@ -139,8 +139,7 @@ window.initOnclick = function(){
 		}
 		HTElements.getPass.results.replaceWith(table); //replace in DOM
 		HTElements.getPass.results = table; //replace in HTElements array (for internal use)
-		//
-		(ret)
+
 	}
 
 	HTElements.getPassCount.submit.onclick = function(){

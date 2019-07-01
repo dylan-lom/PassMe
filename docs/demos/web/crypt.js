@@ -10,8 +10,7 @@ function deriveMasterKey(pass)
 	}
 	//in total, the derivation process is run 100*1000 = 10^5 times
 	window.masterKey = key.toString('hex'); //return hex or derived key
-	//window.alert(window.masterKey);
-	console.log('Master Key: ' + window.masterKey);
+	//console.log('Master Key: ' + window.masterKey);
 }
 
 function encrypt(pass, key)

@@ -19,19 +19,29 @@
 <a href="https://addons.mozilla.org/en-US/firefox/addon/ether-metamask/">Firefox Addons</a><br/>
 <a href="https://addons.opera.com/en/extensions/details/metamask/">Opera Addons</a><br/>
 <a href="https://github.com/MetaMask/metamask-extension">Source</a></p></blockquote></li>
-<li><p>Click through the extension, which will create a new account.</p></li>
-<li><p>Switch networks to the Kovan Test Network.</p>
+
+<li><p>Click on the MetaMask extension (fox icon), and follow the instructions to create a new account.</p></li>
+
+<li><p>Switch networks to the Kovan Test Network, as shown below</p>
 
 <p> <img src="../pub/start-networks.gif" alt="Switching Networks GIF" /></p></li>
-<li><p>Access the <a href="https://faucet.kovan.network/">Kovan Faucet</a>, to redeem 1ETH for your account.</p></li>
-<li><p>Access the <a href="../demos/web/">PassMe webapp</a>, when prompted for the &lsquo;contract address&rsquo;, insert the value below (begging with 0x), which is where the
+
+<li><p>Access the <a href="https://faucet.kovan.network/">Kovan Faucet</a>, to redeem 1ETH for your account.
+       This process requires a Github account, to authenticate you, and your newly created account's address, 
+       which will be copied to your clipboard when you click on your account's name at the top of the metamask
+       extension</p></li>
+
+<li><p>Visit the <a href="../demos/web/">PassMe web application</a>, when prompted for the &lsquo;contract address&rsquo;, insert the value below (begging with 0x), which is where the
 PassMe contract is deployed on the Kovan test network.</p>
 
-<blockquote><p>0xa2BeF77575CBc0a1580A792479e8AcA321870d57</p></blockquote></li>
+  <blockquote><p><strong>0xa2BeF77575CBc0a1580A792479e8AcA321870d57</strong></p></blockquote></li>
+  
+<li><p>Enter a master-password when prompted, this will be used to derive a secure key for encrypting your passwords. Your master password should be at least 12 characters long, and include
+  a variety of letters, numbers and symbols. It is better to have a very random password written down than a predictable password. Random passwords can be generated <a href="https://www.avast.com/random-password-generator">here</a></p></li>
 
-<li><p>The first time you use PassMe, it will prompt you for an initial transaction of ~0.0002ETH. <strong>This is required to initialise
+<li><p>The first time you use PassMe, it will prompt you for an initial transaction. <strong>This is required to initialise
   your vault on the blockchain, please accept the transaction</strong>, otherwise you may encounter issues when attempting to interact with
-your stored passwords.</p></li>
+your stored passwords. After you've confirmed this, please reload the page and re-enter the contract address and your master password</p></li>
 </ol>
 
 <hr>

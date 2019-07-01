@@ -1,0 +1,18 @@
+{
+  "name": "PassMe",
+  "version": "0.6",
+  "description": "Ethereum Password Manager",
+  "main": "index.js",
+  "dependencies": {
+    "web3": "^1.0.0-beta.55",
+    "webpack-cli": "^3.3.4",
+    "webpack": "^4.34.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Dylan Lom",
+  "license": "ISC"
+}

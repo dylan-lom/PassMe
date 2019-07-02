@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset=UTF-8>
+  <link rel="stylesheet" type="text/css" href="../style.css">
+  <title>15 - Submission (v0.6) | Log</title>
+</head>
+
+<body>
+
+<h1>15 - Submission (v0.6)</h1>
+
+<p>Submission date is almost upon me, I&rsquo;ve scrapped the idea for a chrome extension.</p>
+
+<p>I had originally hoped that the process of migrating from <code>node -&gt; web -&gt; extension</code> would be
+ simple, and for the first step, it relatively was. However, in order to get MetaMask to funciton
+ in combination with an extension, there are two suggested approaches:</p>
+
+<ol>
+<li><p><a href="https://medium.com/@writeprovidence/how-to-create-a-web3-provider-from-another-extension-6b5ea59ed4c9">Call upon the MetaMask extension from within another extension through Chrome&rsquo;s
+<code>runtime.connect</code> functionality</a>. This was quickly ruled out as when I compiled the source
+code from GitHub (for the metamask-extension repo), there was no port-stream.js file created, and
+this method seemed fragile, since in the ~10 months since the article was written, MetaMask&rsquo;s
+extension id had already changed.</p></li>
+<li><p><a href="https://github.com/MetaMask/mascara">Use mascara</a>. Metamascara is in an alpha release
+state, and i decided I already depended on enough flakey things in my project (like the
+experiment ABIEncoder I used in the smart contract in order to get string arrays to
+work).</p></li>
+</ol>
+
+
+<p>Since neither of these seem appropriate, I decided its a better idea to focus on the web
+ application (v0.6), which will be my submission.</p>
+
+<hr>
+
+
+<p>Due to the encroaching deadline, I ended up bodging a couple of solutions. One that I
+ had been putting off for a long time was the issue with <code>onlyOwnerOf</code>, where the first
+ few passwords written would only become readable after a total of 3 or more had been
+ added to their &lsquo;vault&rsquo;.</p>
+
+<p>Baffled by what could possibly be causing this, but needing the functionality in order
+ to protect users from having malicious others delete their passwords, I bodged in the
+ <code>addFirstPass()</code> function, which writes two passwords to the start of the user&rsquo;s vault
+ with value &ldquo;1, X, X&rdquo; (they are considered deleted). I&rsquo;ve justified this as an
+ initialisation fee, however, this really shouldn&rsquo;t be required.</p>
+
+<p>In solving the &lsquo;first pass problem&rsquo;, I also ended up having to add two additional
+ modifiers; the <code>initialized</code> and <code>notInitialized</code> (which check the length of the user&rsquo;s
+ vault to see whether they have more than 2 passwds). This works quite well, however it
+ frustrates me (and adds an additional gas fee to txn&rsquo;s) that I couldn&rsquo;t flaw the logic
+ of the contract.</p>
+
+<p>In re-enabling the <code>onlyOwnerOf</code> modifier, I could then enable the <code>notDeleted</code> modifier
+ (since it was now acceptable to have a <code>deletePass</code> function with the <code>onlyOwnerOf</code>
+  modifier). This makes the whole deleted pass functionality work, however it introduces
+  an awful lot of promise rejection errors into the developer console, since MetaMask
+  throws an error, since the smart contract rejects all attempts to read deleted notes.</p>
+
+<p>Had I had more time, this could have been tidied up by switching from <code>.then</code> callbacks
+ to the more sophisticated <code>.on(event, ...)</code> callback functionality provided by send
+ methods. However, the <a href="https://web3js.readthedocs.io/en/1.0/web3-eth-contract.html#methods-mymethod-send">documentation</a>
+ is unclear as to whether this is actually supported by call methods (where no txn is
+ being made). For the submission I&rsquo;ve left a note in the README file, indicating that
+ the &lsquo;errors&rsquo; in the console are completely expected and are actually indications of the
+ smart contract operating correctly.</p>
+
+<hr>
+
+
+<p>Documentation is boring.</p>
+
+<p>GG Major project.</p>
+<hr>
+<p>Published: 2019-07-02</p>
+<p><a href="index.html">Go Back</a></p>
+</body>
+</html>

@@ -12,11 +12,11 @@
 
 <p>Testing the time taken to hash:</p>
 
-<blockquote><p>pass: &lsquo;mybadpassword1234&rsquo;
+<pre><blockquote><p>pass: &lsquo;mybadpassword1234&rsquo;
 salt: &lsquo;0x8babfb24596157203d697e4a6cbcf0406fbe122d&rsquo;
 digest: &lsquo;sha512&rsquo;
 iterations: Varying
-length: 256</p></blockquote>
+length: 256</p></blockquote></pre>
 
 <p>Note on measurements: the time value is based on linux&rsquo;s time, I have averaged the &lsquo;real&rsquo; output out of 3 run-throughs (<a href="https://stackoverflow.com/questions/556405/what-do-real-user-and-sys-mean-in-the-output-of-time1">More info on linux time outputs</a></p>
 
@@ -110,7 +110,7 @@ bytes32 pass ==> string pass</p></blockquote>
 
 <p>This transaction, for example, cost 0.000545 ETH (approximately $0.25 AUD)</p>
 
-<p><img src="../13-passme.png"></p>
+<p><img src="../pub/13-passme.png"></p>
 
 <p>There&rsquo;s still one final bug in v4 before I move on; for some reason, when I try to read the pass with between 1-2 passwords written, I get an RPC error, however when I write additional passwords I can read these earlier passwords just fine.</p>
 

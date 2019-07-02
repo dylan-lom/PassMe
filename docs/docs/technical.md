@@ -53,7 +53,7 @@ The local encryption model also means that the user's master-password (and deriv
 <h2 id="3">3 Password Hashing Process</h2>
 
 Following common security practices (a non-technical overview of which can be watched [here](https://www.youtube.com/watch?v=w68BBPDAWr8)),
- a user's derived vault key goes through a PBKDF2 SHA-256 hashing process, which recursively hashes a user's master password, salted with
+ a user's derived vault key goes through a PBKDF2 SHA-512 hashing process, which recursively hashes a user's master password, salted with
  their Ethereum address to protect user data against brute-force attacks. The purpose of salting the master-key is that it protects the
  user from being vulnerable to a [Rainbow table attack](https://en.wikipedia.org/wiki/Rainbow_table)
 

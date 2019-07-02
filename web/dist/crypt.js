@@ -8,7 +8,7 @@ function deriveMasterKey(pass)
 	{
 		key = window.Crypto.pbkdf2Sync(key, salt, Math.pow(10, 2), 256, 'sha512'); //run PBKDF function 100 times, generating a 256b key, using the SHA512 algorithm
 	}
-	//in total, the derivation process is run 100*1000 = 10^5 times
+	//in total, the derivation process is run 100*100 = 10^4 times
 	window.masterKey = key.toString('hex'); //return hex or derived key
 	//console.log('Master Key: ' + window.masterKey);
 }

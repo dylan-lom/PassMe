@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset=UTF-8>
+  <link rel="stylesheet" type="text/css" href="../style.css">
+  <title>14 - v0.5 and Password Visibility | Log</title>
+</head>
+
+<body>
+
+<h1>14 - v0.5 and Password Visibility</h1>
+
+<p>I&rsquo;ve almost finished v5, all that&rsquo;s left is to work out
+ toggleable password fields in search results, and taking
+ advantage of the MetaData field.</p>
+
+<p>So far I haven&rsquo;t discussed the reason why I kept this field
+ from NoteChain, but the reason it was used there was to
+ counterract the blockchain&rsquo;s immutability; by setting metadata
+ to 1 in the original contract, you marked that the note had been
+ &lsquo;deleted&rsquo;.</p>
+
+<p>For PassMe, I&rsquo;ll retain the 1==deleted approach, but also since
+ the project is still unreleased, I&rsquo;d like to start using it to
+ identify which version of PassMe wrote the note, e.g.
+ for the current version of the PassMe contract (v0.3.5), I&rsquo;ll
+ set metadata to &lsquo;0&rsquo;.</p>
+
+<p>Frontends that wanted to use different encryption models, for example, could use >1</p>
+
+<hr>
+
+
+<p>Anyway, here&rsquo;s a demo using the search function that I wrote</p>
+
+<p><img src="../pub/14-search.gif" alt="Search Demo" /></p>
+
+<p>I&rsquo;ve been having a lot of issues with the toggle buttons, since it&rsquo;s important to be able
+ to address the created password elements by id (to use the
+ <code>document.getElementById(...)</code> method, in order to modify their contents via a function).
+I kept recieving a <code>document.getElementById(...) is undefined</code> error, which I couldn&rsquo;t
+ work out the root of, so I ended up sticking a lot of <code>console.log()</code> output statements
+ throughout the module in order to try and pin down why I couldn&rsquo;t find the id. At the
+ time of writing, the issue still alludes me.</p>
+
+<p>I&rsquo;d also like to use icons to indicate the visibility toggle button, and I could use the
+ common iconography of an open eye to indicate toggling the visibility to readable, and
+ an eye with a line through it to indicate toggling visibility to hidden.</p>
+
+<p>Common icons are available under the Apache open source license from Google&rsquo;s <a href="https://material.io/tools/icons/?style=baseline">Material
+ Design project</a>, as well as on
+ wikicommons (i believe these are all public domain, although a citation is needed).</p>
+
+<p>One issue with toggleable visibility is the actual hidden state of the text, since
+ HTML paragraph elements don&rsquo;t have a password display mode like inputs do, solutions
+ to this could be to create an input that users couldn&rsquo;t edit, or to roll-my-own function
+ which converts text into &lsquo;*&rsquo; characters, although then I&rsquo;d also need to implement a
+ data structure that could store the real password when it&rsquo;s in its &lsquo;hidden&rsquo; state.</p>
+<hr>
+<p>Published: 2019-06-27</p>
+<p><a href="index.html">Go Back</a></p>
+</body>
+</html>
